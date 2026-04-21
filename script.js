@@ -3,6 +3,7 @@ const menu = document.getElementById('navMenu');
 const preloader = document.getElementById('preloader');
 const anchorLinks = document.querySelectorAll('a[href^="#"]');
 const heroReveals = document.querySelectorAll('.hero .reveal');
+const scrollReveals = document.querySelectorAll('.reveal:not(.hero .reveal)');
 
 const SCROLL_TRIGGER = 40;
 const SCROLL_OFFSET = 70;
@@ -51,6 +52,22 @@ function revealHero() {
   }, REVEAL_DELAY);
 }
 
+// Function to reveal non-hero elements when they scroll into view
+function observeReveals() {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+  scrollReveals.forEach((el) => observer.observe(el));
+}
+
 // Event listener to toggle navbar state on scroll
 window.addEventListener('scroll', fixNav);
 
@@ -61,3 +78,6 @@ anchorLinks.forEach((link) => {
 
 // Event listener to fade out preloader on page load
 window.addEventListener('load', hidePreloader);
+
+// Start observing non-hero reveals immediately (observer handles visibility itself)
+observeReveals();

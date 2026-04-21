@@ -560,3 +560,102 @@ body {
     transform: translateX(30px);
   }
 }
+
+/* Shared section shell (reusable by future sections) */
+.block {
+  padding: clamp(5rem, 10vw, 8rem) 0;
+}
+
+.about {
+  background: var(--bg-alt);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ───── Portrait wrapper ───── */
+.author-portrait {
+  position: relative;
+  border-radius: 3px;
+  box-shadow: 20px 20px 0 -2px var(--emerald-dark);
+  overflow: hidden;
+  line-height: 0;
+}
+
+/* The image itself */
+.author-img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.85) contrast(1.05);
+  transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.author-portrait:hover .author-img {
+  transform: scale(1.03);
+}
+
+/* Soft bottom gradient over the image */
+.author-portrait::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(15, 42, 30, 0.15));
+  pointer-events: none;
+}
+
+/* ───── Bio column ───── */
+.author-body .eyebrow {
+  margin-bottom: 1.5rem;
+}
+
+.author-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 2rem;
+}
+
+.author-body p {
+  color: var(--ink-light);
+  margin-bottom: 1.3rem;
+  font-size: 1.05rem;
+}
+
+.author-body p em {
+  font-style: italic;
+  color: var(--emerald-dark);
+}
+
+/* ───── Pull quote ───── */
+.author-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.5rem;
+  line-height: 1.35;
+  color: var(--emerald-dark);
+  border-left: 2px solid var(--gold);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+}
+
+/* ───── Signature ───── */
+.author-sign {
+  margin-top: 2rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.6rem;
+  color: var(--emerald-dark);
+}
+
+/* ───── About — Mobile ───── */
+@media (max-width: 991.98px) {
+  .author-portrait {
+    max-width: 380px;
+    margin: 0 auto 2rem;
+    box-shadow: 14px 14px 0 -2px var(--emerald-dark);
+  }
+  .author-quote {
+    font-size: 1.25rem;
+  }
+}
