@@ -1,9 +1,11 @@
 const nav = document.getElementById('nav');
 const menu = document.getElementById('navMenu');
+const preloader = document.getElementById('preloader');
 const anchorLinks = document.querySelectorAll('a[href^="#"]');
 
 const SCROLL_TRIGGER = 40;
 const SCROLL_OFFSET = 70;
+const PRELOADER_DELAY = 800;
 
 // Function to toggle the navbar scrolled state
 function fixNav() {
@@ -32,6 +34,11 @@ function smoothScroll(e) {
   closeMobileMenu();
 }
 
+// Function to fade out the preloader after page load
+function hidePreloader() {
+  setTimeout(() => preloader.classList.add('hidden'), PRELOADER_DELAY);
+}
+
 // Event listener to toggle navbar state on scroll
 window.addEventListener('scroll', fixNav);
 
@@ -39,3 +46,6 @@ window.addEventListener('scroll', fixNav);
 anchorLinks.forEach((link) => {
   link.addEventListener('click', smoothScroll);
 });
+
+// Event listener to fade out preloader on page load
+window.addEventListener('load', hidePreloader);
