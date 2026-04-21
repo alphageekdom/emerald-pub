@@ -1,0 +1,159 @@
+/* ───── Design Tokens ───── */
+:root {
+  /* Surfaces */
+  --bg: #f5f1e8;
+  --bg-alt: #ede7d9;
+  --bg-rich: #14120f;
+  --cream: #f5f1e8;
+  --cream-soft: #faf7f0;
+
+  /* Ink */
+  --ink: #1a1a18;
+  --ink-light: #4a4a45;
+  --ink-muted: #8a8a82;
+
+  /* Brand */
+  --emerald: #2d6a4f;
+  --emerald-dark: #1b4332;
+  --emerald-deep: #0f2a1e;
+  --emerald-light: #40916c;
+
+  /* Accents */
+  --gold: #b68d40;
+  --gold-light: #d4b068;
+  --gold-soft: #e8d5a8;
+
+  /* Type */
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'Outfit', -apple-system, sans-serif;
+}
+
+/* ───── Base ───── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink);
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--emerald);
+  color: var(--cream);
+}
+
+/* ───── Navbar overrides ───── */
+.custom-nav {
+  padding: 1.2rem 0;
+  background: transparent;
+  transition: all 0.4s ease;
+}
+
+.custom-nav.scrolled {
+  background: rgba(245, 241, 232, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 0.6rem 0;
+  box-shadow: 0 1px 0 rgba(26, 26, 24, 0.05);
+}
+
+/* Brand */
+.custom-nav .navbar-brand {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--ink);
+}
+
+.brand-dot {
+  width: 10px;
+  height: 10px;
+  background: var(--emerald);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Nav links */
+.custom-nav .nav-link {
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-light) !important;
+  padding: 0.5rem 1.1rem !important;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.custom-nav .nav-link:hover {
+  color: var(--emerald) !important;
+}
+
+/* CTA button */
+.nav-cta {
+  background: var(--emerald-dark);
+  color: var(--cream) !important;
+  padding: 0.6rem 1.3rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 400;
+  transition: all 0.3s;
+}
+
+.nav-cta:hover {
+  background: var(--emerald);
+  color: var(--cream) !important;
+}
+
+/* Toggler (burger) */
+.custom-nav .navbar-toggler {
+  padding: 0.3rem 0.5rem;
+}
+.custom-nav .navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.custom-nav .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='%231A1A18' stroke-linecap='round' stroke-miterlimit='10' stroke-width='1.5' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Animated underline on hover (desktop only) */
+@media (min-width: 992px) {
+  .custom-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 1px;
+    background: var(--emerald);
+    transition: width 0.3s;
+  }
+  .custom-nav .nav-link:hover::after {
+    width: calc(100% - 2.2rem);
+  }
+}
+
+/* Mobile collapsed menu styling */
+@media (max-width: 991.98px) {
+  .custom-nav .navbar-collapse {
+    background: var(--cream-soft);
+    margin-top: 1rem;
+    padding: 1.5rem;
+    border-radius: 4px;
+    box-shadow: 0 20px 40px -10px rgba(15, 42, 30, 0.15);
+  }
+  .custom-nav .nav-cta {
+    margin-top: 1rem;
+    display: inline-block;
+    align-self: flex-start;
+  }
+}
