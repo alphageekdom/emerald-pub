@@ -2,10 +2,12 @@ const nav = document.getElementById('nav');
 const menu = document.getElementById('navMenu');
 const preloader = document.getElementById('preloader');
 const anchorLinks = document.querySelectorAll('a[href^="#"]');
+const heroReveals = document.querySelectorAll('.hero .reveal');
 
 const SCROLL_TRIGGER = 40;
 const SCROLL_OFFSET = 70;
 const PRELOADER_DELAY = 800;
+const REVEAL_DELAY = 100;
 
 // Function to toggle the navbar scrolled state
 function fixNav() {
@@ -36,7 +38,17 @@ function smoothScroll(e) {
 
 // Function to fade out the preloader after page load
 function hidePreloader() {
-  setTimeout(() => preloader.classList.add('hidden'), PRELOADER_DELAY);
+  setTimeout(() => {
+    preloader.classList.add('hidden');
+    revealHero();
+  }, PRELOADER_DELAY);
+}
+
+// Function to reveal hero elements with a slight stagger after the preloader fades
+function revealHero() {
+  setTimeout(() => {
+    heroReveals.forEach((el) => el.classList.add('is-in'));
+  }, REVEAL_DELAY);
 }
 
 // Event listener to toggle navbar state on scroll
