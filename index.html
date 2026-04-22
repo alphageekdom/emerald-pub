@@ -49,13 +49,24 @@
       content="https://res.cloudinary.com/alphageekdom-dev/image/upload/f_auto,q_auto,w_1200,h_630,c_fill/v1776815289/rising-from-the-ashes/e-wise-portrait.jpg"
     />
 
-    <!-- Google Fonts -->
+    <!-- Preconnects for third-party assets -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
+
+    <!-- Google Fonts (non-blocking: font-display: swap handles FOUT) -->
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@200;300;400;500;600&display=swap"
       rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@200;300;400;500;600&display=swap"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@200;300;400;500;600&display=swap"
+      />
+    </noscript>
 
     <!-- Bootstrap 5 -->
     <link
@@ -68,14 +79,21 @@
   </head>
 
   <body>
+    <!-- Skip to main content -->
+    <a href="#main" class="skip-link">Skip to main content</a>
+
     <!-- Preloader -->
-    <div class="preloader" id="preloader">
+    <div class="preloader" id="preloader" aria-hidden="true">
       <div class="preloader-mark">Emerald <em>Publishing</em></div>
       <div class="preloader-sub">Rising from the Ashes</div>
     </div>
 
     <!-- Nav -->
-    <nav class="navbar navbar-expand-lg fixed-top custom-nav" id="nav">
+    <nav
+      class="navbar navbar-expand-lg fixed-top custom-nav"
+      id="nav"
+      aria-label="Primary"
+    >
       <div class="container">
         <!-- Brand -->
         <a class="navbar-brand d-flex align-items-center" href="#">
@@ -119,8 +137,9 @@
       </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="hero">
+    <main id="main">
+      <!-- Hero -->
+      <section class="hero" aria-labelledby="hero-title">
       <!-- Floating ember particles -->
       <div class="embers" aria-hidden="true">
         <span class="ember"></span>
@@ -137,7 +156,7 @@
             <div class="hero-content reveal">
               <div class="eyebrow">New Release · Spring 2026</div>
 
-              <h1 class="hero-title display">
+              <h1 id="hero-title" class="hero-title display">
                 Rising<br />from <em>the Ashes</em>
               </h1>
 
@@ -166,8 +185,8 @@
             </div>
           </div>
 
-          <!-- Right: CSS book cover -->
-          <div class="col-lg-5">
+          <!-- Right: CSS book cover (decorative — text is in the h1 above) -->
+          <div class="col-lg-5" aria-hidden="true">
             <div class="book-stage reveal">
               <div class="book">
                 <div class="book-front">
@@ -178,6 +197,7 @@
                     viewBox="0 0 100 140"
                     xmlns="http://www.w3.org/2000/svg"
                     aria-hidden="true"
+                    focusable="false"
                   >
                     <path
                       d="M50 10 C 40 35, 25 45, 30 70 C 32 85, 42 92, 40 105 C 38 115, 48 120, 50 130 C 52 120, 62 115, 60 105 C 58 92, 68 85, 70 70 C 75 45, 60 35, 50 10 Z"
@@ -203,14 +223,24 @@
     </section>
 
     <!-- About the Author -->
-    <section id="about" class="block about">
+    <section
+      id="about"
+      class="block about"
+      aria-labelledby="about-heading"
+    >
       <div class="container">
         <div class="row align-items-center g-5">
           <!-- Portrait -->
           <div class="col-lg-5">
             <div class="author-portrait reveal">
               <img
-                src="https://res.cloudinary.com/alphageekdom-dev/image/upload/f_auto,q_auto,w_1000/v1776815289/rising-from-the-ashes/e-wise-portrait.jpg"
+                src="https://res.cloudinary.com/alphageekdom-dev/image/upload/f_auto,q_auto,w_800/v1776815289/rising-from-the-ashes/e-wise-portrait.jpg"
+                srcset="
+                  https://res.cloudinary.com/alphageekdom-dev/image/upload/f_auto,q_auto,w_500/v1776815289/rising-from-the-ashes/e-wise-portrait.jpg   500w,
+                  https://res.cloudinary.com/alphageekdom-dev/image/upload/f_auto,q_auto,w_800/v1776815289/rising-from-the-ashes/e-wise-portrait.jpg   800w,
+                  https://res.cloudinary.com/alphageekdom-dev/image/upload/f_auto,q_auto,w_1200/v1776815289/rising-from-the-ashes/e-wise-portrait.jpg 1200w
+                "
+                sizes="(min-width: 992px) 40vw, 100vw"
                 alt="E. Wise, author of Rising from the Ashes"
                 class="img-fluid author-img"
                 width="475"
@@ -225,7 +255,7 @@
             <div class="author-body reveal">
               <div class="eyebrow">About the Author</div>
 
-              <h2 class="display author-heading">
+              <h2 id="about-heading" class="display author-heading">
                 Words written from <em>lived experience</em>.
               </h2>
 
@@ -261,12 +291,16 @@
     </section>
 
     <!-- Inside the Book -->
-    <section id="inside" class="block inside">
+    <section
+      id="inside"
+      class="block inside"
+      aria-labelledby="inside-heading"
+    >
       <div class="container">
         <!-- Section header -->
         <div class="section-head reveal">
           <div class="eyebrow">Inside the Book</div>
-          <h2 class="display inside-heading">
+          <h2 id="inside-heading" class="display inside-heading">
             Eight chapters for the <em>long work</em> ahead.
           </h2>
           <p class="section-lead">
@@ -279,7 +313,7 @@
         <!-- Chapters grid -->
         <div class="chapters">
           <div class="chapter reveal">
-            <div class="chapter-num">i.</div>
+            <div class="chapter-num" aria-hidden="true">i.</div>
             <div>
               <h3 class="chapter-title">The Weight We Learn to Carry</h3>
               <p class="chapter-desc">
@@ -290,7 +324,7 @@
           </div>
 
           <div class="chapter reveal">
-            <div class="chapter-num">ii.</div>
+            <div class="chapter-num" aria-hidden="true">ii.</div>
             <div>
               <h3 class="chapter-title">Naming the Fire</h3>
               <p class="chapter-desc">
@@ -301,7 +335,7 @@
           </div>
 
           <div class="chapter reveal">
-            <div class="chapter-num">iii.</div>
+            <div class="chapter-num" aria-hidden="true">iii.</div>
             <div>
               <h3 class="chapter-title">Stillness as Medicine</h3>
               <p class="chapter-desc">
@@ -312,7 +346,7 @@
           </div>
 
           <div class="chapter reveal">
-            <div class="chapter-num">iv.</div>
+            <div class="chapter-num" aria-hidden="true">iv.</div>
             <div>
               <h3 class="chapter-title">The Long Walk Through Grief</h3>
               <p class="chapter-desc">
@@ -323,7 +357,7 @@
           </div>
 
           <div class="chapter reveal">
-            <div class="chapter-num">v.</div>
+            <div class="chapter-num" aria-hidden="true">v.</div>
             <div>
               <h3 class="chapter-title">Rebuilding the Inner Voice</h3>
               <p class="chapter-desc">
@@ -334,7 +368,7 @@
           </div>
 
           <div class="chapter reveal">
-            <div class="chapter-num">vi.</div>
+            <div class="chapter-num" aria-hidden="true">vi.</div>
             <div>
               <h3 class="chapter-title">Relationships After the Storm</h3>
               <p class="chapter-desc">
@@ -344,7 +378,7 @@
           </div>
 
           <div class="chapter reveal">
-            <div class="chapter-num">vii.</div>
+            <div class="chapter-num" aria-hidden="true">vii.</div>
             <div>
               <h3 class="chapter-title">A Life Worth Returning To</h3>
               <p class="chapter-desc">
@@ -355,7 +389,7 @@
           </div>
 
           <div class="chapter reveal">
-            <div class="chapter-num">viii.</div>
+            <div class="chapter-num" aria-hidden="true">viii.</div>
             <div>
               <h3 class="chapter-title">On Rising</h3>
               <p class="chapter-desc">
@@ -369,19 +403,31 @@
     </section>
 
     <!-- Praise -->
-    <section id="praise" class="block praise">
+    <section
+      id="praise"
+      class="block praise"
+      aria-labelledby="praise-heading"
+    >
       <div class="container">
         <!-- Section header -->
         <div class="section-head reveal">
           <div class="eyebrow">Praise</div>
-          <h2 class="display">Quiet books, <em>lasting impact</em>.</h2>
+          <h2 id="praise-heading" class="display">
+            Quiet books, <em>lasting impact</em>.
+          </h2>
         </div>
 
         <!-- Review grid -->
         <div class="row g-4 praise-grid">
           <div class="col-lg-4 col-md-6">
             <article class="praise-card reveal">
-              <div class="praise-stars">★ ★ ★ ★ ★</div>
+              <div
+                class="praise-stars"
+                role="img"
+                aria-label="Rated 5 out of 5 stars"
+              >
+                <span aria-hidden="true">★ ★ ★ ★ ★</span>
+              </div>
               <blockquote class="praise-text">
                 The first book in years that didn't try to fix me. It sat with
                 me. I'm returning to chapter three already.
@@ -406,7 +452,13 @@
 
           <div class="col-lg-4 col-md-6">
             <article class="praise-card reveal">
-              <div class="praise-stars">★ ★ ★ ★ ★</div>
+              <div
+                class="praise-stars"
+                role="img"
+                aria-label="Rated 5 out of 5 stars"
+              >
+                <span aria-hidden="true">★ ★ ★ ★ ★</span>
+              </div>
               <blockquote class="praise-text">
                 Careful, unsentimental, deeply human. Wise writes the way a good
                 friend listens — slowly, without rushing.
@@ -431,7 +483,13 @@
 
           <div class="col-lg-4 col-md-6">
             <article class="praise-card reveal">
-              <div class="praise-stars">★ ★ ★ ★ ★</div>
+              <div
+                class="praise-stars"
+                role="img"
+                aria-label="Rated 5 out of 5 stars"
+              >
+                <span aria-hidden="true">★ ★ ★ ★ ★</span>
+              </div>
               <blockquote class="praise-text">
                 A book I wish I'd had at twenty. Grateful I have it now. I'll be
                 gifting this to everyone I love.
@@ -458,12 +516,14 @@
     </section>
 
     <!-- Shop -->
-    <section id="shop" class="block shop">
+    <section id="shop" class="block shop" aria-labelledby="shop-heading">
       <div class="container">
         <!-- Section header -->
         <div class="section-head reveal">
           <div class="eyebrow">Choose Your Edition</div>
-          <h2 class="display">Find the copy that fits <em>your shelf</em>.</h2>
+          <h2 id="shop-heading" class="display">
+            Find the copy that fits <em>your shelf</em>.
+          </h2>
           <p class="section-lead">
             Three ways to read — each printed and bound with the same care that
             shaped the words.
@@ -502,6 +562,7 @@
                     class="btn edition-btn"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="Order the E-Book Edition"
                     >Order</a
                   >
                 </div>
@@ -539,6 +600,7 @@
                     class="btn edition-btn"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="Order the Autographed Edition"
                     >Order</a
                   >
                 </div>
@@ -576,6 +638,7 @@
                     class="btn edition-btn"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="Order the Hardcover Edition"
                     >Order</a
                   >
                 </div>
@@ -587,14 +650,14 @@
     </section>
 
     <!-- Newsletter -->
-    <section class="block newsletter">
+    <section class="block newsletter" aria-labelledby="newsletter-heading">
       <div class="container">
         <div class="row align-items-center g-5">
           <!-- Left: pitch copy -->
           <div class="col-lg-6">
             <div class="reveal">
               <div class="eyebrow">Stay Close</div>
-              <h2 class="display newsletter-heading">
+              <h2 id="newsletter-heading" class="display newsletter-heading">
                 Receive the <em>first chapter free</em>, plus a letter each
                 month.
               </h2>
@@ -657,14 +720,18 @@
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="block contact">
+    <section
+      id="contact"
+      class="block contact"
+      aria-labelledby="contact-heading"
+    >
       <div class="container">
         <div class="row g-5">
           <!-- Left: info + emails -->
           <div class="col-lg-5">
             <div class="contact-info reveal">
               <div class="eyebrow">Get in Touch</div>
-              <h2 class="display contact-heading">
+              <h2 id="contact-heading" class="display contact-heading">
                 For press, speaking, or a <em>quiet word</em>.
               </h2>
               <p class="contact-intro">
@@ -774,6 +841,7 @@
         </div>
       </div>
     </section>
+    </main>
 
     <!-- Footer -->
     <footer class="site-footer">
@@ -793,7 +861,7 @@
 
           <!-- Read column -->
           <div class="col-lg-2 col-md-6 col-6">
-            <h4>Read</h4>
+            <h2 class="foot-col-title">Read</h2>
             <ul>
               <li><a href="#about">About the Author</a></li>
               <li><a href="#inside">Inside the Book</a></li>
@@ -804,7 +872,7 @@
 
           <!-- Company column -->
           <div class="col-lg-3 col-md-6 col-6">
-            <h4>Company</h4>
+            <h2 class="foot-col-title">Company</h2>
             <ul>
               <li>
                 <a
@@ -836,7 +904,7 @@
 
           <!-- Fine Print column -->
           <div class="col-lg-3 col-md-6 col-6">
-            <h4>Fine Print</h4>
+            <h2 class="foot-col-title">Fine Print</h2>
             <ul>
               <li>
                 <a
@@ -892,6 +960,8 @@
                 fill="none"
                 stroke="currentColor"
                 stroke-width="1.5"
+                aria-hidden="true"
+                focusable="false"
               >
                 <rect x="3" y="3" width="18" height="18" rx="4" />
                 <circle cx="12" cy="12" r="4" />
@@ -909,6 +979,8 @@
                 height="14"
                 viewBox="0 0 24 24"
                 fill="currentColor"
+                aria-hidden="true"
+                focusable="false"
               >
                 <path
                   d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"
@@ -928,6 +1000,8 @@
                 fill="none"
                 stroke="currentColor"
                 stroke-width="1.5"
+                aria-hidden="true"
+                focusable="false"
               >
                 <path
                   d="M4 19.5V4.5A1.5 1.5 0 015.5 3H18a2 2 0 012 2v14.5a.5.5 0 01-.8.4L12 15l-7.2 4.9a.5.5 0 01-.8-.4z"
@@ -945,6 +1019,8 @@
                 height="14"
                 viewBox="0 0 24 24"
                 fill="currentColor"
+                aria-hidden="true"
+                focusable="false"
               >
                 <path
                   d="M22.539 8.242H1.461V5.406h21.078v2.836zM1.461 10.812V24L12 18.11 22.539 24V10.812H1.461zM22.539 0H1.461v2.836h21.078V0z"
@@ -956,7 +1032,10 @@
       </div>
     </footer>
 
-    <script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js" defer></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      defer
+    ></script>
   </body>
 </html>
