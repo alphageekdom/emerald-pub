@@ -4,6 +4,7 @@ const preloader = document.getElementById('preloader');
 const anchorLinks = document.querySelectorAll('a[href^="#"]');
 const heroReveals = document.querySelectorAll('.hero .reveal');
 const scrollReveals = document.querySelectorAll('.reveal:not(.hero .reveal)');
+const phoneInput = document.getElementById('c-phone');
 
 const SCROLL_TRIGGER = 40;
 const SCROLL_OFFSET = 70;
@@ -52,6 +53,16 @@ function revealHero() {
   }, REVEAL_DELAY);
 }
 
+// Function to progressively format the contact phone field as (XXX) XXX-XXXX
+function formatPhone(e) {
+  const digits = e.target.value.replace(/\D/g, '').slice(0, 10);
+  let formatted = '';
+  if (digits.length > 0) formatted = '(' + digits.slice(0, 3);
+  if (digits.length >= 4) formatted += ') ' + digits.slice(3, 6);
+  if (digits.length >= 7) formatted += '-' + digits.slice(6, 10);
+  e.target.value = formatted;
+}
+
 // Function to reveal non-hero elements when they scroll into view
 function observeReveals() {
   const observer = new IntersectionObserver(
@@ -78,6 +89,9 @@ anchorLinks.forEach((link) => {
 
 // Event listener to fade out preloader on page load
 window.addEventListener('load', hidePreloader);
+
+// Event listener to auto-format the phone field
+phoneInput?.addEventListener('input', formatPhone);
 
 // Start observing non-hero reveals immediately (observer handles visibility itself)
 observeReveals();
