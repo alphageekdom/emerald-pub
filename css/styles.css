@@ -659,3 +659,143 @@ body {
     font-size: 1.25rem;
   }
 }
+
+/* ───── Inside the Book ───── */
+
+/* Shared section-head utility (reusable) */
+.section-head {
+  margin-bottom: 4rem;
+  max-width: 720px;
+}
+
+.section-head .eyebrow {
+  margin-bottom: 1.3rem;
+}
+
+.section-head h2 {
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  line-height: 1.08;
+}
+
+.section-lead {
+  margin-top: 1.3rem;
+  color: var(--ink-light);
+  font-size: 1.1rem;
+  max-width: 58ch;
+}
+
+/* Inside section shell */
+.inside {
+  background: var(--bg-rich);
+  color: var(--cream-soft);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Soft emerald glow in the upper-left */
+.inside::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -5%;
+  width: 40vw;
+  height: 40vw;
+  background: radial-gradient(circle, rgba(45, 106, 79, 0.25), transparent 60%);
+  pointer-events: none;
+}
+
+/* Override eyebrow + headline colors for dark background */
+.inside .eyebrow {
+  color: var(--gold-light);
+}
+.inside .eyebrow::before {
+  background: var(--gold-light);
+}
+
+.inside-heading {
+  color: var(--cream-soft);
+}
+.inside-heading em {
+  color: var(--gold-light);
+}
+
+.inside .section-lead {
+  color: rgba(245, 241, 232, 0.7);
+}
+
+/* Chapter grid */
+.chapters {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 2rem;
+  border-top: 1px solid rgba(245, 241, 232, 0.12);
+  position: relative;
+  z-index: 2;
+}
+
+.chapter {
+  padding: 2.2rem 0;
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 1.5rem;
+  border-bottom: 1px solid rgba(245, 241, 232, 0.12);
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* Odd chapters (left column): right padding + vertical divider */
+.chapter:nth-child(odd) {
+  padding-right: 2rem;
+  border-right: 1px solid rgba(245, 241, 232, 0.12);
+}
+
+/* Even chapters (right column): left padding */
+.chapter:nth-child(even) {
+  padding-left: 2rem;
+}
+
+.chapter:hover {
+  transform: translateX(4px);
+}
+
+.chapter-num {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--gold-light);
+  font-size: 1.4rem;
+}
+
+.chapter-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 1.2;
+  color: var(--cream-soft);
+  margin-bottom: 0.5rem;
+}
+
+.chapter-desc {
+  color: rgba(245, 241, 232, 0.6);
+  font-size: 0.93rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Inside — mobile */
+@media (max-width: 767.98px) {
+  .chapters {
+    grid-template-columns: 1fr;
+  }
+  .chapter:nth-child(odd) {
+    padding-right: 0;
+    border-right: none;
+  }
+  .chapter:nth-child(even) {
+    padding-left: 0;
+  }
+  .chapter {
+    padding: 1.6rem 0;
+  }
+  .chapter-title {
+    font-size: 1.2rem;
+  }
+}
