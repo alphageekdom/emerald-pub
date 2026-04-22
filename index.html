@@ -411,52 +411,6 @@
       </div>
     </section>
 
-    <section class="newsletter" id="newsletter">
-      <div class="container">
-        <div class="row">
-          <!-- Left Columns -->
-          <div class="col-lg-5">
-            <div class="image-container mt-n6 mb-5">
-              <img
-                src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGF1dGhvcnxlbnwwfDB8MHx8fDI%3D"
-                alt=""
-                class="img-fluid"
-              />
-            </div>
-          </div>
-          <!-- Left Column -->
-          <!-- Right Column -->
-          <div class="col-lg-7">
-            <div
-              class="text-container text-white d-flex flex-column justify-content-center h-100 mb-5"
-            >
-              <h2 class="fw-bold">Subscribe to our Newsletter</h2>
-              <p>
-                Stay up to date for future book signing dates, seminars,
-                coaching programs, downloadable content, interviews, etc...
-              </p>
-
-              <!-- Form -->
-              <form>
-                <div class="input-group mb-3">
-                  <input
-                    type="email"
-                    class="form-control"
-                    placeholder="Email Address"
-                  />
-                  <button class="btn btn-primary text-white rounded-end">
-                    Download
-                  </button>
-                </div>
-              </form>
-              <!-- Form -->
-            </div>
-          </div>
-          <!-- Right Column -->
-        </div>
-      </div>
-    </section>
-
     <!-- Shop -->
     <section id="shop" class="block shop">
       <div class="container">
@@ -557,6 +511,76 @@
                 </div>
               </div>
             </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="block newsletter">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <!-- Left: pitch copy -->
+          <div class="col-lg-6">
+            <div class="reveal">
+              <div class="eyebrow">Stay Close</div>
+              <h2 class="display newsletter-heading">
+                Receive the <em>first chapter free</em>, plus a letter each
+                month.
+              </h2>
+              <p class="newsletter-lead">
+                No marketing. No noise. Just occasional reflections from E. Wise
+                — new writing, upcoming talks, and quiet thoughts for the people
+                on this same road.
+              </p>
+            </div>
+          </div>
+
+          <!-- Right: signup form -->
+          <div class="col-lg-6">
+            <form
+              class="newsletter-form reveal"
+              name="newsletter"
+              method="POST"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+            >
+              <input type="hidden" name="form-name" value="newsletter" />
+              <p class="d-none">
+                <label>Don't fill this out: <input name="bot-field" /></label>
+              </p>
+
+              <h3 class="newsletter-form-title">Join the <em>Letters</em></h3>
+              <p class="newsletter-form-sub">
+                We'll send your free chapter immediately.
+              </p>
+
+              <div class="nl-field">
+                <label for="nl-name">Your Name</label>
+                <input
+                  type="text"
+                  id="nl-name"
+                  name="name"
+                  placeholder="First name"
+                  required
+                />
+              </div>
+
+              <div class="nl-field">
+                <label for="nl-email">Email</label>
+                <input
+                  type="email"
+                  id="nl-email"
+                  name="email"
+                  placeholder="you@example.com"
+                  required
+                />
+              </div>
+
+              <button type="submit" class="btn newsletter-btn">
+                Send My Free Chapter
+              </button>
+            </form>
           </div>
         </div>
       </div>
