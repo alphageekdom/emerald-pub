@@ -1218,3 +1218,137 @@ body {
     padding: 1.8rem;
   }
 }
+
+/* ───── Contact ───── */
+.contact {
+  background: var(--bg);
+}
+
+/* Info column */
+.contact-heading {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 1.5rem;
+}
+
+.contact-intro {
+  color: var(--ink-light);
+  margin-bottom: 2.5rem;
+  max-width: 42ch;
+}
+
+/* Definition list: label + value pairs */
+.contact-meta {
+  border-top: 1px solid var(--ink);
+  padding-top: 2rem;
+  margin: 0;
+}
+
+.contact-meta dt {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+}
+
+.contact-meta dd {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--emerald-dark);
+  margin: 0 0 1.6rem 0;
+  line-height: 1.4;
+}
+
+.contact-meta dd a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.contact-meta dd a:hover {
+  color: var(--gold);
+}
+
+/* Form card */
+.contact-form {
+  background: var(--cream-soft);
+  padding: 3rem;
+  border: 1px solid rgba(26, 26, 24, 0.06);
+  border-radius: 3px;
+  box-shadow: 0 20px 40px -20px rgba(15, 42, 30, 0.12);
+}
+
+/* Fields */
+.c-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.c-field label {
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.c-field input,
+.c-field textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(26, 26, 24, 0.15);
+  padding: 0.7rem 0;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  resize: none;
+}
+
+.c-field textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.c-field input:focus,
+.c-field textarea:focus {
+  outline: none;
+  border-color: var(--emerald);
+}
+
+.c-field input::placeholder,
+.c-field textarea::placeholder {
+  color: rgba(26, 26, 24, 0.3);
+}
+
+/* Submit button */
+.contact-btn {
+  margin-top: 1rem;
+  background: var(--emerald-dark);
+  color: var(--cream) !important;
+  padding: 1rem 2.5rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-radius: 999px;
+  transition: all 0.3s;
+}
+
+.contact-btn:hover {
+  background: var(--emerald);
+  color: var(--cream) !important;
+  transform: translateY(-2px);
+}
+
+/* Contact — mobile */
+@media (max-width: 767.98px) {
+  .contact-form {
+    padding: 1.8rem;
+  }
+  .contact-meta dd {
+    font-size: 1.05rem;
+  }
+}
