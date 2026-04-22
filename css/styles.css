@@ -797,3 +797,103 @@ body {
     font-size: 1.2rem;
   }
 }
+
+/* ───── Praise ───── */
+.praise {
+  background: var(--bg);
+}
+
+.praise-grid {
+  margin-top: 1rem;
+}
+
+/* Review card */
+.praise-card {
+  padding: 2.2rem 0 0;
+  border-top: 1px solid var(--ink);
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Giant opening quotation mark in upper right */
+.praise-card::before {
+  content: '"';
+  position: absolute;
+  top: 0.2rem;
+  right: 0;
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  line-height: 1;
+  color: var(--gold);
+}
+
+/* Star rating */
+.praise-stars {
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+/* Quote body */
+.praise-text {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  line-height: 1.4;
+  color: var(--ink);
+  margin: 0 0 2rem;
+  flex-grow: 1;
+}
+
+/* Reviewer block */
+.praise-reviewer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1.2rem;
+  border-top: 1px dotted rgba(26, 26, 24, 0.15);
+}
+
+.praise-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: saturate(0.85) contrast(1.05);
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(15, 42, 30, 0.15);
+}
+
+.praise-author {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.praise-author strong {
+  color: var(--emerald-dark);
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+
+.praise-author span {
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+/* Praise — mobile */
+@media (max-width: 767.98px) {
+  .praise-text {
+    font-size: 1.1rem;
+  }
+  .praise-avatar {
+    width: 46px;
+    height: 46px;
+  }
+}
