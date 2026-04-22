@@ -1352,3 +1352,121 @@ body {
     font-size: 1.05rem;
   }
 }
+
+/* ───── Footer ───── */
+.site-footer {
+  background: var(--bg-rich);
+  color: rgba(245, 241, 232, 0.55);
+  padding: 5rem 0 2rem;
+  font-size: 0.88rem;
+}
+
+.footer-grid {
+  margin-bottom: 3rem;
+}
+
+/* Column headings */
+.site-footer h4 {
+  color: var(--cream-soft);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 1.2rem;
+}
+
+/* Link lists */
+.site-footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.site-footer li {
+  margin-bottom: 0.6rem;
+}
+
+.site-footer a {
+  color: rgba(245, 241, 232, 0.55);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.site-footer a:hover {
+  color: var(--gold-light);
+}
+
+/* Brand column */
+.foot-brand {
+  font-family: var(--font-display);
+  color: var(--cream);
+  font-size: 1.6rem;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.foot-brand-dot {
+  width: 10px;
+  height: 10px;
+  background: var(--emerald-light);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.foot-tag {
+  max-width: 30ch;
+  line-height: 1.6;
+  color: rgba(245, 241, 232, 0.55);
+}
+
+/* Bottom bar */
+.foot-bottom {
+  border-top: 1px solid rgba(245, 241, 232, 0.1);
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Social icons */
+.socials {
+  display: flex;
+  gap: 1rem;
+}
+
+.socials a {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(245, 241, 232, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(245, 241, 232, 0.55);
+  transition: all 0.3s;
+}
+
+.socials a:hover {
+  border-color: var(--gold-light);
+  color: var(--gold-light);
+  transform: translateY(-2px);
+}
+
+/* Footer — mobile */
+@media (max-width: 575.98px) {
+  .site-footer {
+    padding: 4rem 0 2rem;
+  }
+  .foot-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+  .foot-brand {
+    font-size: 1.4rem;
+  }
+}
