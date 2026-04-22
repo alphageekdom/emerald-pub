@@ -927,6 +927,27 @@ body {
   color: var(--ink-muted);
 }
 
+/* ───── Reviewer social ───── */
+.praise-social {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(26, 26, 24, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-muted);
+  margin-left: auto;
+  flex-shrink: 0;
+  transition: all 0.3s;
+}
+
+.praise-social:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+
 /* Praise — mobile */
 @media (max-width: 767.98px) {
   .praise-text {
@@ -935,6 +956,10 @@ body {
   .praise-avatar {
     width: 46px;
     height: 46px;
+  }
+  .praise-social {
+    width: 30px;
+    height: 30px;
   }
 }
 
