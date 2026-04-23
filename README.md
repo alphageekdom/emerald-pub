@@ -29,7 +29,7 @@ A single-page marketing site for **_Rising from the Ashes_** by E. Wise, an upco
 - **Shop** — Three editions (E-Book $14, Hardcover $29, Autographed $48).
 - **Newsletter** — Email signup that promises the first chapter free (Netlify Forms).
 - **Contact** — Editorial / press inquiries with a full contact form (Netlify Forms).
-- **Footer** — Brand column, link columns, and social icons (Instagram, Twitter, Goodreads, Substack).
+- **Footer** — Brand column, link columns, and social icons (Instagram, X, Goodreads, Substack).
 
 ---
 

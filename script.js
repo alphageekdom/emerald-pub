@@ -17,7 +17,7 @@ function handleNavScroll() {
 if (navbar) window.addEventListener('scroll', handleNavScroll);
 
 
-// ── SMOOTH SCROLL ──
+// ── NAV ANCHORS + MOBILE MENU ──
 const NAV_HEIGHT_OFFSET = 70;
 const navMenu = document.getElementById('navMenu');
 const anchorLinks = document.querySelectorAll('a[href^="#"]');
@@ -44,32 +44,16 @@ function handleAnchorClick(event) {
 
 anchorLinks.forEach((link) => link.addEventListener('click', handleAnchorClick));
 
-
-// ── PRELOADER + HERO REVEAL ──
-const PRELOADER_FADE_DELAY = 800;
-const HERO_REVEAL_DELAY = 100;
-const preloader = document.getElementById('preloader');
-const heroReveals = document.querySelectorAll('.hero .reveal');
-
-function revealHero() {
-  setTimeout(() => {
-    heroReveals.forEach((el) => el.classList.add('is-in'));
-  }, HERO_REVEAL_DELAY);
-}
-
-function hidePreloader() {
-  setTimeout(() => {
-    preloader.classList.add('hidden');
-    revealHero();
-  }, PRELOADER_FADE_DELAY);
-}
-
-window.addEventListener('load', hidePreloader);
+// ESC closes the mobile nav if it's open (early-returns when closed).
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeMobileMenu();
+});
 
 
 // ── SCROLL-TRIGGERED REVEALS ──
+// Hero .reveal elements start in the viewport and animate in on first tick.
 const REVEAL_THRESHOLD = 0.15;
-const scrollReveals = document.querySelectorAll('.reveal:not(.hero .reveal)');
+const scrollReveals = document.querySelectorAll('.reveal');
 
 function initRevealObserver() {
   const observer = new IntersectionObserver(
@@ -102,6 +86,68 @@ function formatPhoneNumber(event) {
 }
 
 phoneInput?.addEventListener('input', formatPhoneNumber);
+
+
+// ── EXCERPT MODAL ──
+const excerptModal = document.getElementById('excerpt-modal');
+const excerptDialog = excerptModal?.querySelector('[role="dialog"]');
+const excerptOpener = document.querySelector('[data-open-excerpt]');
+const excerptCloseEls = excerptModal?.querySelectorAll('[data-close-excerpt]');
+
+let lastFocusedBeforeModal = null;
+
+function getFocusables(root) {
+  return root.querySelectorAll(
+    'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+  );
+}
+
+function handleExcerptKeydown(event) {
+  if (event.key === 'Escape') {
+    closeExcerpt();
+    return;
+  }
+  if (event.key !== 'Tab') return;
+
+  const focusables = getFocusables(excerptDialog);
+  if (focusables.length === 0) return;
+
+  const first = focusables[0];
+  const last = focusables[focusables.length - 1];
+  const active = document.activeElement;
+
+  if (event.shiftKey && active === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && active === last) {
+    event.preventDefault();
+    first.focus();
+  }
+}
+
+function openExcerpt() {
+  if (!excerptModal) return;
+  lastFocusedBeforeModal = document.activeElement;
+  excerptModal.hidden = false;
+  document.body.classList.add('modal-open');
+  excerptDialog?.focus();
+  document.addEventListener('keydown', handleExcerptKeydown);
+}
+
+function closeExcerpt() {
+  if (!excerptModal || excerptModal.hidden) return;
+  excerptModal.hidden = true;
+  document.body.classList.remove('modal-open');
+  document.removeEventListener('keydown', handleExcerptKeydown);
+  lastFocusedBeforeModal?.focus();
+}
+
+excerptOpener?.addEventListener('click', (event) => {
+  event.preventDefault();
+  openExcerpt();
+});
+
+excerptCloseEls?.forEach((el) => el.addEventListener('click', closeExcerpt));
 
 
 // ── DYNAMIC DATES ──
