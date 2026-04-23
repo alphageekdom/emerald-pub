@@ -102,3 +102,24 @@ function formatPhoneNumber(event) {
 }
 
 phoneInput?.addEventListener('input', formatPhoneNumber);
+
+
+// ── DYNAMIC DATES ──
+const yearEl = document.getElementById('year');
+const seasonEl = document.getElementById('season');
+
+const now = new Date();
+const currentYear = now.getFullYear();
+const currentMonth = now.getMonth();
+
+function currentSeasonLabel() {
+  // December rolls into next year's Winter
+  if (currentMonth === 11) return `Winter ${currentYear + 1}`;
+  if (currentMonth <= 1) return `Winter ${currentYear}`;
+  if (currentMonth <= 4) return `Spring ${currentYear}`;
+  if (currentMonth <= 7) return `Summer ${currentYear}`;
+  return `Fall ${currentYear}`;
+}
+
+if (yearEl) yearEl.textContent = currentYear;
+if (seasonEl) seasonEl.textContent = currentSeasonLabel();
