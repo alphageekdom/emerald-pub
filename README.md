@@ -4,6 +4,20 @@ A single-page marketing site for **_Rising from the Ashes_** by E. Wise, an upco
 
 **Live site:** https://emerald-pub.netlify.app/
 
+> **Demo content.** This is a portfolio project. E. Wise is a fictional author, the book does not exist, and all reviewer profiles, emails, and addresses are fabricated. The contact-form phone placeholder uses the FCC-reserved `555-01XX` range. Editorial and press emails are not monitored.
+
+---
+
+## Screenshots
+
+| Desktop — Hero | Desktop — Shop |
+| :---: | :---: |
+| ![Hero section with CSS book cover](docs/screenshots/desktop-hero.jpeg) | ![Three-edition shop grid](docs/screenshots/desktop-shop.jpeg) |
+
+| Mobile — Hero | Mobile — Nav Open |
+| :---: | :---: |
+| ![Mobile hero, menu closed](docs/screenshots/mobile-hero.jpeg) | ![Mobile navigation expanded](docs/screenshots/mobile-nav-open.jpeg) |
+
 ---
 
 ## Sections
@@ -23,7 +37,7 @@ A single-page marketing site for **_Rising from the Ashes_** by E. Wise, an upco
 
 - **HTML5** — semantic, accessible markup with skip link, ARIA labels, and proper landmarks.
 - **CSS3** — custom styles in [css/styles.css](css/styles.css), built on Bootstrap 5's grid.
-- **Bootstrap 5.3.3** — loaded via CDN for layout grid and the mobile nav collapse.
+- **Bootstrap 5.3.3** — self-hosted at [css/vendor/bootstrap.min.css](css/vendor/bootstrap.min.css) for layout grid and the mobile nav collapse. Kept off the CDN to avoid a cross-origin round-trip on the critical path.
 - **Vanilla JavaScript** — no framework, no build step. See [script.js](script.js).
 - **Google Fonts** — DM Serif Display (display) + Outfit (body), loaded non-blocking.
 - **Cloudinary** — image CDN for the author portrait, reviewer avatars, and edition images; `f_auto,q_auto` transforms on every URL.
@@ -46,14 +60,30 @@ A single-page marketing site for **_Rising from the Ashes_** by E. Wise, an upco
 
 ---
 
+## Lighthouse
+
+Desktop run against the live site (`npx lighthouse https://emerald-pub.netlify.app/ --preset=desktop`, 2026-04-23):
+
+| Performance | Accessibility | Best Practices | SEO |
+| :---: | :---: | :---: | :---: |
+| **98** | **100** | **100** | **100** |
+
+CLS = 0, TBT = 0 ms, LCP = 0.9 s. The small Performance deduction comes from ~31 KiB of unused Bootstrap CSS on the render-blocking stylesheet — a known tradeoff of loading the grid via CDN.
+
+---
+
 ## Project Structure
 
 ```
 emerald-pub/
 ├── index.html          # All page markup and section content
 ├── css/
-│   └── styles.css      # Custom styles (loaded after Bootstrap)
+│   ├── styles.css      # Custom styles (loaded after Bootstrap)
+│   └── vendor/
+│       └── bootstrap.min.css   # Bootstrap 5.3.3, self-hosted
 ├── script.js           # Nav, smooth scroll, preloader, reveals, phone format
+├── docs/
+│   └── screenshots/    # Desktop + mobile captures referenced in this README
 └── README.md
 ```
 
