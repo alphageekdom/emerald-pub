@@ -49,7 +49,7 @@ A single-page marketing site for **_Rising from the Ashes_** by E. Wise, an upco
 ## Project Structure
 
 ```
-product-page/
+emerald-pub/
 ├── index.html          # All page markup and section content
 ├── css/
 │   └── styles.css      # Custom styles (loaded after Bootstrap)
