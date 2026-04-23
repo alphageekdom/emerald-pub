@@ -1,97 +1,104 @@
-const nav = document.getElementById('nav');
-const menu = document.getElementById('navMenu');
-const preloader = document.getElementById('preloader');
+// ── NAVBAR SCROLL STATE ──
+const NAV_SCROLL_TRIGGER = 40;
+const navbar = document.getElementById('nav');
+
+// rAF-throttled: coalesce bursts of scroll events into one class update per frame.
+let navScrollTicking = false;
+
+function handleNavScroll() {
+  if (navScrollTicking) return;
+  navScrollTicking = true;
+  requestAnimationFrame(() => {
+    navbar.classList.toggle('scrolled', window.scrollY > NAV_SCROLL_TRIGGER);
+    navScrollTicking = false;
+  });
+}
+
+if (navbar) window.addEventListener('scroll', handleNavScroll);
+
+
+// ── SMOOTH SCROLL ──
+const NAV_HEIGHT_OFFSET = 70;
+const navMenu = document.getElementById('navMenu');
 const anchorLinks = document.querySelectorAll('a[href^="#"]');
-const heroReveals = document.querySelectorAll('.hero .reveal');
-const scrollReveals = document.querySelectorAll('.reveal:not(.hero .reveal)');
-const phoneInput = document.getElementById('c-phone');
 
-const SCROLL_TRIGGER = 40;
-const SCROLL_OFFSET = 70;
-const PRELOADER_DELAY = 800;
-const REVEAL_DELAY = 100;
-
-// Function to toggle the navbar scrolled state
-function fixNav() {
-  nav.classList.toggle('scrolled', window.scrollY > SCROLL_TRIGGER);
-}
-
-// Function to close the Bootstrap mobile menu when it is open
 function closeMobileMenu() {
-  if (menu.classList.contains('show')) {
-    bootstrap.Collapse.getInstance(menu)?.hide();
-  }
+  if (!navMenu.classList.contains('show')) return;
+  bootstrap.Collapse.getInstance(navMenu)?.hide();
 }
 
-// Function to smooth-scroll to an in-page anchor with nav offset
-function smoothScroll(e) {
-  const id = this.getAttribute('href');
-  if (id.length <= 1) return;
+function handleAnchorClick(event) {
+  const href = event.currentTarget.getAttribute('href');
+  if (href === '#') return;
 
-  const target = document.querySelector(id);
+  const target = document.querySelector(href);
   if (!target) return;
 
-  e.preventDefault();
-  const y = target.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
-  window.scrollTo({ top: y, behavior: 'smooth' });
+  event.preventDefault();
+  const targetY =
+    target.getBoundingClientRect().top + window.scrollY - NAV_HEIGHT_OFFSET;
+  window.scrollTo({ top: targetY, behavior: 'smooth' });
 
   closeMobileMenu();
 }
 
-// Function to fade out the preloader after page load
+anchorLinks.forEach((link) => link.addEventListener('click', handleAnchorClick));
+
+
+// ── PRELOADER + HERO REVEAL ──
+const PRELOADER_FADE_DELAY = 800;
+const HERO_REVEAL_DELAY = 100;
+const preloader = document.getElementById('preloader');
+const heroReveals = document.querySelectorAll('.hero .reveal');
+
+function revealHero() {
+  setTimeout(() => {
+    heroReveals.forEach((el) => el.classList.add('is-in'));
+  }, HERO_REVEAL_DELAY);
+}
+
 function hidePreloader() {
   setTimeout(() => {
     preloader.classList.add('hidden');
     revealHero();
-  }, PRELOADER_DELAY);
+  }, PRELOADER_FADE_DELAY);
 }
 
-// Function to reveal hero elements with a slight stagger after the preloader fades
-function revealHero() {
-  setTimeout(() => {
-    heroReveals.forEach((el) => el.classList.add('is-in'));
-  }, REVEAL_DELAY);
-}
+window.addEventListener('load', hidePreloader);
 
-// Function to progressively format the contact phone field as (XXX) XXX-XXXX
-function formatPhone(e) {
-  const digits = e.target.value.replace(/\D/g, '').slice(0, 10);
-  let formatted = '';
-  if (digits.length > 0) formatted = '(' + digits.slice(0, 3);
-  if (digits.length >= 4) formatted += ') ' + digits.slice(3, 6);
-  if (digits.length >= 7) formatted += '-' + digits.slice(6, 10);
-  e.target.value = formatted;
-}
 
-// Function to reveal non-hero elements when they scroll into view
-function observeReveals() {
+// ── SCROLL-TRIGGERED REVEALS ──
+const REVEAL_THRESHOLD = 0.15;
+const scrollReveals = document.querySelectorAll('.reveal:not(.hero .reveal)');
+
+function initRevealObserver() {
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-in');
-          observer.unobserve(entry.target);
-        }
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-in');
+        observer.unobserve(entry.target);
       });
     },
-    { threshold: 0.15 }
+    { threshold: REVEAL_THRESHOLD }
   );
+
   scrollReveals.forEach((el) => observer.observe(el));
 }
 
-// Event listener to toggle navbar state on scroll
-window.addEventListener('scroll', fixNav);
+initRevealObserver();
 
-// Event listener to smooth-scroll on anchor link clicks
-anchorLinks.forEach((link) => {
-  link.addEventListener('click', smoothScroll);
-});
 
-// Event listener to fade out preloader on page load
-window.addEventListener('load', hidePreloader);
+// ── CONTACT PHONE FORMATTING ──
+const phoneInput = document.getElementById('c-phone');
 
-// Event listener to auto-format the phone field
-phoneInput?.addEventListener('input', formatPhone);
+function formatPhoneNumber(event) {
+  const digits = event.target.value.replace(/\D/g, '').slice(0, 10);
+  const parts = [];
+  if (digits.length > 0) parts.push(`(${digits.slice(0, 3)}`);
+  if (digits.length >= 4) parts.push(`) ${digits.slice(3, 6)}`);
+  if (digits.length >= 7) parts.push(`-${digits.slice(6, 10)}`);
+  event.target.value = parts.join('');
+}
 
-// Start observing non-hero reveals immediately (observer handles visibility itself)
-observeReveals();
+phoneInput?.addEventListener('input', formatPhoneNumber);

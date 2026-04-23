@@ -1,4 +1,3 @@
-/* ───── Design Tokens ───── */
 :root {
   /* Surfaces */
   --bg: #f5f1e8;
@@ -26,9 +25,13 @@
   /* Type */
   --font-display: 'DM Serif Display', Georgia, serif;
   --font-body: 'Outfit', -apple-system, sans-serif;
+
+  /* Shape + motion */
+  --radius-pill: 999px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-/* ───── Base ───── */
+
 html {
   scroll-behavior: smooth;
 }
@@ -49,7 +52,7 @@ body {
   color: var(--cream);
 }
 
-/* ───── Accessibility ───── */
+
 .skip-link {
   position: absolute;
   top: -100px;
@@ -89,7 +92,8 @@ body {
   }
 }
 
-/* ───── Shared Utilities ───── */
+
+/* ── EYEBROW (SMALL LABEL ABOVE HEADINGS) ── */
 .eyebrow {
   font-size: 0.72rem;
   text-transform: uppercase;
@@ -108,6 +112,7 @@ body {
   display: inline-block;
 }
 
+/* ── DISPLAY HEADINGS ── */
 .display {
   font-family: var(--font-display);
   font-weight: 400;
@@ -119,25 +124,25 @@ body {
   color: var(--emerald);
 }
 
-/* Reveal-on-scroll (hero kept visible by default via JS) */
+/* ── REVEAL-ON-SCROLL (HERO KEPT VISIBLE BY DEFAULT VIA JS) ── */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
   transition:
-    opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
-    transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+    opacity 0.9s var(--ease),
+    transform 0.9s var(--ease);
 }
 .reveal.is-in {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Shared section shell (reusable section padding) */
+/* ── SECTION SHELL (REUSABLE SECTION PADDING) ── */
 .block {
   padding: clamp(5rem, 10vw, 8rem) 0;
 }
 
-/* Section head (eyebrow + headline + lead) */
+/* ── SECTION HEAD (EYEBROW + HEADLINE + LEAD) ── */
 .section-head {
   margin-bottom: 4rem;
   max-width: 720px;
@@ -159,7 +164,7 @@ body {
   max-width: 58ch;
 }
 
-/* Shared buttons */
+/* ── SHARED BUTTONS ── */
 .btn-primary-custom {
   background: var(--emerald-dark);
   color: var(--cream);
@@ -168,8 +173,8 @@ body {
   letter-spacing: 0.04em;
   font-weight: 500;
   text-transform: uppercase;
-  border-radius: 999px;
-  transition: all 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+  border-radius: var(--radius-pill);
+  transition: all 0.4s var(--ease);
 }
 .btn-primary-custom:hover {
   background: var(--emerald);
@@ -194,7 +199,7 @@ body {
   text-decoration-color: var(--emerald);
 }
 
-/* ───── Preloader ───── */
+
 .preloader {
   position: fixed;
   inset: 0;
@@ -248,7 +253,7 @@ body {
   }
 }
 
-/* ───── Navbar ───── */
+
 .custom-nav {
   padding: 1.2rem 0;
   background: transparent;
@@ -263,7 +268,7 @@ body {
   box-shadow: 0 1px 0 rgba(26, 26, 24, 0.05);
 }
 
-/* Brand */
+/* ── BRAND ── */
 .custom-nav .navbar-brand {
   font-family: var(--font-display);
   font-size: 1.35rem;
@@ -278,7 +283,7 @@ body {
   display: inline-block;
 }
 
-/* Nav links */
+/* ── LINKS ── */
 .custom-nav .nav-link {
   font-size: 0.82rem;
   letter-spacing: 0.12em;
@@ -293,12 +298,12 @@ body {
   color: var(--emerald) !important;
 }
 
-/* CTA button */
+/* ── CTA BUTTON ── */
 .nav-cta {
   background: var(--emerald-dark);
   color: var(--cream) !important;
   padding: 0.6rem 1.3rem;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   font-size: 0.78rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -311,7 +316,7 @@ body {
   color: var(--cream) !important;
 }
 
-/* Toggler (burger) */
+/* ── TOGGLER (BURGER) ── */
 .custom-nav .navbar-toggler {
   padding: 0.3rem 0.5rem;
 }
@@ -323,7 +328,7 @@ body {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='%231A1A18' stroke-linecap='round' stroke-miterlimit='10' stroke-width='1.5' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
-/* Animated underline on hover (desktop only) */
+/* ── DESKTOP: ANIMATED UNDERLINE ON HOVER ── */
 @media (min-width: 992px) {
   .custom-nav .nav-link::after {
     content: '';
@@ -341,7 +346,7 @@ body {
   }
 }
 
-/* Navbar — mobile */
+/* ── MOBILE (≤ 991.98PX) ── */
 @media (max-width: 991.98px) {
   .custom-nav .navbar-collapse {
     background: var(--cream-soft);
@@ -357,7 +362,7 @@ body {
   }
 }
 
-/* ───── Hero ───── */
+
 .hero {
   min-height: 100vh;
   padding: 8rem 0 4rem;
@@ -367,6 +372,7 @@ body {
   overflow: hidden;
 }
 
+/* Soft gold glow in the upper-right */
 .hero::before {
   content: '';
   position: absolute;
@@ -382,6 +388,7 @@ body {
   pointer-events: none;
 }
 
+/* ── COPY COLUMN ── */
 .hero-content .eyebrow {
   margin-bottom: 2rem;
 }
@@ -428,7 +435,7 @@ body {
   color: var(--gold);
 }
 
-/* CSS Book Cover */
+/* ── 3D BOOK COVER ── */
 .book-stage {
   perspective: 1800px;
   display: flex;
@@ -442,7 +449,7 @@ body {
   position: relative;
   transform-style: preserve-3d;
   transform: rotateY(-18deg) rotateX(4deg);
-  transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition: transform 0.8s var(--ease);
   box-shadow:
     -40px 30px 60px -20px rgba(15, 42, 30, 0.45),
     -15px 15px 30px -10px rgba(15, 42, 30, 0.3);
@@ -548,7 +555,7 @@ body {
   z-index: 2;
 }
 
-/* Floating ember particles */
+/* ── FLOATING EMBER PARTICLES ── */
 .embers {
   position: absolute;
   inset: 0;
@@ -610,7 +617,7 @@ body {
   }
 }
 
-/* Hero — mobile */
+/* ── MOBILE (≤ 991.98PX) ── */
 @media (max-width: 991.98px) {
   .hero {
     padding: 7rem 0 3rem;
@@ -628,14 +635,14 @@ body {
   }
 }
 
-/* ───── About the Author ───── */
+
 .about {
   background: var(--bg-alt);
   position: relative;
   overflow: hidden;
 }
 
-/* Portrait */
+/* ── PORTRAIT ── */
 .author-portrait {
   position: relative;
   border-radius: 3px;
@@ -651,7 +658,7 @@ body {
   object-fit: cover;
   display: block;
   filter: saturate(0.85) contrast(1.05);
-  transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition: transform 0.8s var(--ease);
 }
 
 .author-portrait:hover .author-img {
@@ -667,7 +674,7 @@ body {
   pointer-events: none;
 }
 
-/* Bio */
+/* ── BIO ── */
 .author-body .eyebrow {
   margin-bottom: 1.5rem;
 }
@@ -689,7 +696,7 @@ body {
   color: var(--emerald-dark);
 }
 
-/* Pull quote */
+/* ── PULL QUOTE ── */
 .author-quote {
   font-family: var(--font-display);
   font-style: italic;
@@ -701,7 +708,7 @@ body {
   margin: 2rem 0;
 }
 
-/* Signature */
+/* ── SIGNATURE ── */
 .author-sign {
   margin-top: 2rem;
   font-family: var(--font-display);
@@ -710,7 +717,7 @@ body {
   color: var(--emerald-dark);
 }
 
-/* About — mobile */
+/* ── MOBILE (≤ 991.98PX) ── */
 @media (max-width: 991.98px) {
   .author-portrait {
     max-width: 380px;
@@ -722,7 +729,7 @@ body {
   }
 }
 
-/* ───── Inside the Book ───── */
+
 .inside {
   background: var(--bg-rich);
   color: var(--cream-soft);
@@ -742,7 +749,7 @@ body {
   pointer-events: none;
 }
 
-/* Override eyebrow + headline colors for dark background */
+/* ── DARK-BACKGROUND OVERRIDES FOR SHARED UTILITIES ── */
 .inside .eyebrow {
   color: var(--gold-light);
 }
@@ -761,7 +768,7 @@ body {
   color: rgba(245, 241, 232, 0.7);
 }
 
-/* Chapter grid */
+/* ── CHAPTER GRID ── */
 .chapters {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -777,7 +784,7 @@ body {
   grid-template-columns: 60px 1fr;
   gap: 1.5rem;
   border-bottom: 1px solid rgba(245, 241, 232, 0.12);
-  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition: transform 0.4s var(--ease);
 }
 
 /* Odd chapters (left column): right padding + vertical divider */
@@ -818,7 +825,7 @@ body {
   margin: 0;
 }
 
-/* Inside — mobile */
+/* ── MOBILE (≤ 767.98PX) ── */
 @media (max-width: 767.98px) {
   .chapters {
     grid-template-columns: 1fr;
@@ -838,7 +845,7 @@ body {
   }
 }
 
-/* ───── Praise ───── */
+
 .praise {
   background: var(--bg);
 }
@@ -847,7 +854,7 @@ body {
   margin-top: 1rem;
 }
 
-/* Review card */
+/* ── REVIEW CARD ── */
 .praise-card {
   padding: 2.2rem 0 0;
   border-top: 1px solid var(--ink);
@@ -869,7 +876,7 @@ body {
   color: var(--gold);
 }
 
-/* Star rating */
+/* ── STAR RATING ── */
 .praise-stars {
   color: var(--gold);
   letter-spacing: 0.2em;
@@ -877,7 +884,7 @@ body {
   margin-bottom: 1rem;
 }
 
-/* Quote body */
+/* ── QUOTE BODY ── */
 .praise-text {
   font-family: var(--font-display);
   font-size: 1.25rem;
@@ -887,7 +894,7 @@ body {
   flex-grow: 1;
 }
 
-/* Reviewer block */
+/* ── REVIEWER BLOCK ── */
 .praise-reviewer {
   display: flex;
   align-items: center;
@@ -927,7 +934,7 @@ body {
   color: var(--ink-muted);
 }
 
-/* ───── Reviewer social ───── */
+/* ── REVIEWER SOCIAL ── */
 .praise-social {
   width: 34px;
   height: 34px;
@@ -948,7 +955,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* Praise — mobile */
+/* ── MOBILE (≤ 767.98PX) ── */
 @media (max-width: 767.98px) {
   .praise-text {
     font-size: 1.1rem;
@@ -963,7 +970,7 @@ body {
   }
 }
 
-/* ───── Shop ───── */
+
 .shop {
   background: var(--bg-alt);
 }
@@ -972,7 +979,7 @@ body {
   margin-top: 1rem;
 }
 
-/* Edition card */
+/* ── EDITION CARD ── */
 .edition-card {
   position: relative;
   height: 540px;
@@ -980,8 +987,8 @@ body {
   overflow: hidden;
   box-shadow: 0 20px 40px -20px rgba(15, 42, 30, 0.25);
   transition:
-    transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1),
-    box-shadow 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transform 0.6s var(--ease),
+    box-shadow 0.6s var(--ease);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -1000,7 +1007,7 @@ body {
   height: 100%;
   object-fit: cover;
   filter: saturate(0.88) contrast(1.05);
-  transition: transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition: transform 1.2s var(--ease);
 }
 
 .edition-card:hover .edition-img {
@@ -1020,7 +1027,7 @@ body {
   pointer-events: none;
 }
 
-/* Corner tag */
+/* ── CORNER TAG ── */
 .edition-tag {
   position: absolute;
   top: 1.3rem;
@@ -1031,7 +1038,7 @@ body {
   color: var(--bg-rich);
   background: var(--gold-light);
   padding: 0.4rem 0.85rem;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   z-index: 2;
   font-weight: 500;
 }
@@ -1041,7 +1048,7 @@ body {
   color: var(--cream-soft);
 }
 
-/* Card body (sits on top of scrim) */
+/* ── CARD BODY (SITS ON TOP OF SCRIM) ── */
 .edition-body {
   position: relative;
   z-index: 2;
@@ -1075,7 +1082,7 @@ body {
   max-width: 30ch;
 }
 
-/* Price + button row */
+/* ── PRICE + BUTTON ROW ── */
 .edition-foot {
   display: flex;
   align-items: center;
@@ -1099,7 +1106,7 @@ body {
   color: var(--gold-light);
 }
 
-/* Gold pill button */
+/* ── GOLD PILL BUTTON ── */
 .edition-btn {
   background: var(--gold-light);
   color: var(--bg-rich) !important;
@@ -1108,7 +1115,7 @@ body {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   font-weight: 500;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   transition: all 0.3s;
 }
 
@@ -1118,7 +1125,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* Shop — mobile */
+/* ── MOBILE (≤ 767.98PX) ── */
 @media (max-width: 767.98px) {
   .edition-card {
     height: 480px;
@@ -1131,7 +1138,7 @@ body {
   }
 }
 
-/* ───── Newsletter ───── */
+
 .newsletter {
   background: linear-gradient(135deg, var(--emerald-deep), var(--emerald-dark));
   color: var(--cream);
@@ -1155,7 +1162,7 @@ body {
   pointer-events: none;
 }
 
-/* Eyebrow + heading — dark-background variants */
+/* ── DARK-BACKGROUND OVERRIDES FOR SHARED UTILITIES ── */
 .newsletter .eyebrow {
   color: var(--gold-light);
   margin-bottom: 1.3rem;
@@ -1184,7 +1191,7 @@ body {
   z-index: 2;
 }
 
-/* Signup form */
+/* ── SIGNUP FORM ── */
 .newsletter-form {
   background: rgba(245, 241, 232, 0.05);
   border: 1px solid rgba(212, 176, 104, 0.25);
@@ -1213,7 +1220,7 @@ body {
   margin-bottom: 1.8rem;
 }
 
-/* Form fields */
+/* ── FORM FIELDS ── */
 .nl-field {
   display: flex;
   flex-direction: column;
@@ -1256,7 +1263,7 @@ body {
   transition: background-color 9999s ease-in-out 0s;
 }
 
-/* Submit button */
+/* ── SUBMIT BUTTON ── */
 .newsletter-btn {
   margin-top: 1rem;
   width: 100%;
@@ -1267,7 +1274,7 @@ body {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   font-weight: 500;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   transition: all 0.3s;
 }
 
@@ -1277,19 +1284,19 @@ body {
   transform: translateY(-2px);
 }
 
-/* Newsletter — mobile */
+/* ── MOBILE (≤ 991.98PX) ── */
 @media (max-width: 991.98px) {
   .newsletter-form {
     padding: 1.8rem;
   }
 }
 
-/* ───── Contact ───── */
+
 .contact {
   background: var(--bg);
 }
 
-/* Info column */
+/* ── INFO COLUMN ── */
 .contact-heading {
   font-size: clamp(2rem, 4vw, 3rem);
   margin-bottom: 1.5rem;
@@ -1335,7 +1342,7 @@ body {
   color: var(--gold);
 }
 
-/* Form card */
+/* ── FORM CARD ── */
 .contact-form {
   background: var(--cream-soft);
   padding: 3rem;
@@ -1344,7 +1351,7 @@ body {
   box-shadow: 0 20px 40px -20px rgba(15, 42, 30, 0.12);
 }
 
-/* Fields */
+/* ── FIELDS ── */
 .c-field {
   display: flex;
   flex-direction: column;
@@ -1388,7 +1395,7 @@ body {
   color: rgba(26, 26, 24, 0.3);
 }
 
-/* Submit button */
+/* ── SUBMIT BUTTON ── */
 .contact-btn {
   margin-top: 1rem;
   background: var(--emerald-dark);
@@ -1398,7 +1405,7 @@ body {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   font-weight: 500;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   transition: all 0.3s;
 }
 
@@ -1408,7 +1415,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* Contact — mobile */
+/* ── MOBILE (≤ 767.98PX) ── */
 @media (max-width: 767.98px) {
   .contact-form {
     padding: 1.8rem;
@@ -1418,7 +1425,7 @@ body {
   }
 }
 
-/* ───── Footer ───── */
+
 .site-footer {
   background: var(--bg-rich);
   color: rgba(245, 241, 232, 0.55);
@@ -1430,7 +1437,7 @@ body {
   margin-bottom: 3rem;
 }
 
-/* Column headings */
+/* ── COLUMN HEADINGS ── */
 .site-footer .foot-col-title {
   color: var(--cream-soft);
   font-family: var(--font-display);
@@ -1439,7 +1446,7 @@ body {
   margin-bottom: 1.2rem;
 }
 
-/* Link lists */
+/* ── LINK LISTS ── */
 .site-footer ul {
   list-style: none;
   padding: 0;
@@ -1460,7 +1467,7 @@ body {
   color: var(--gold-light);
 }
 
-/* Brand column */
+/* ── BRAND COLUMN ── */
 .foot-brand {
   font-family: var(--font-display);
   color: var(--cream);
@@ -1485,7 +1492,7 @@ body {
   color: rgba(245, 241, 232, 0.55);
 }
 
-/* Bottom bar */
+/* ── BOTTOM BAR ── */
 .foot-bottom {
   border-top: 1px solid rgba(245, 241, 232, 0.1);
   padding-top: 2rem;
@@ -1498,7 +1505,7 @@ body {
   gap: 1rem;
 }
 
-/* Social icons */
+/* ── SOCIAL ICONS ── */
 .socials {
   display: flex;
   gap: 1rem;
@@ -1522,7 +1529,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* Footer — mobile */
+/* ── MOBILE (≤ 575.98PX) ── */
 @media (max-width: 575.98px) {
   .site-footer {
     padding: 4rem 0 2rem;
