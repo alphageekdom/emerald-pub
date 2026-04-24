@@ -31,7 +31,6 @@
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-
 /* ── BASE ── */
 body {
   font-family: var(--font-body);
@@ -47,7 +46,6 @@ body {
   color: var(--cream);
   background: var(--emerald);
 }
-
 
 /* ── ACCESSIBILITY ── */
 .skip-link {
@@ -85,7 +83,6 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
-
 
 /* ── EYEBROW (SMALL LABEL ABOVE HEADINGS) ── */
 .eyebrow {
@@ -197,7 +194,6 @@ body {
   text-decoration-color: var(--emerald);
 }
 
-
 /* ── NAVBAR ── */
 .custom-nav {
   padding: 1.2rem 0;
@@ -306,7 +302,6 @@ body {
     margin-top: 1rem;
   }
 }
-
 
 /* ── HERO ── */
 .hero {
@@ -581,7 +576,6 @@ body {
   }
 }
 
-
 /* ── ABOUT THE AUTHOR ── */
 .about {
   position: relative;
@@ -675,7 +669,6 @@ body {
     font-size: 1.25rem;
   }
 }
-
 
 /* ── INSIDE THE BOOK ── */
 .inside {
@@ -792,7 +785,6 @@ body {
     font-size: 1.2rem;
   }
 }
-
 
 /* ── PRAISE ── */
 .praise {
@@ -918,7 +910,6 @@ body {
     height: 30px;
   }
 }
-
 
 /* ── SHOP ── */
 .shop {
@@ -1133,7 +1124,6 @@ body {
   letter-spacing: 0.02em;
 }
 
-
 /* ── FAQ ── */
 .faq {
   background: var(--bg);
@@ -1226,7 +1216,6 @@ body {
 .faq-answer a:hover {
   color: var(--gold);
 }
-
 
 /* ── NEWSLETTER ── */
 .newsletter {
@@ -1381,7 +1370,6 @@ body {
   }
 }
 
-
 /* ── CONTACT ── */
 .contact {
   background: var(--bg);
@@ -1527,7 +1515,6 @@ body {
   }
 }
 
-
 /* ── FOOTER ── */
 .site-footer {
   padding: 5rem 0 2rem;
@@ -1608,6 +1595,33 @@ body {
   letter-spacing: 0.05em;
 }
 
+.foot-credit {
+  /* nowrap keeps the separator + "Site by AlphaGeekdom" together as a single chunk that wraps to a new line when it can't fit */
+  white-space: nowrap;
+  color: rgba(245, 241, 232, 0.4);
+}
+
+/* Middle-dot separator travels with the credit on wrap */
+.foot-credit::before {
+  content: ' · ';
+  margin: 0 0.4rem 0 0.2rem;
+  color: rgba(245, 241, 232, 0.3);
+}
+
+.foot-credit a {
+  color: rgba(245, 241, 232, 0.7);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(212, 176, 104, 0.4);
+  transition:
+    color 0.3s,
+    border-color 0.3s;
+}
+
+.foot-credit a:hover {
+  color: var(--gold-light);
+  border-bottom-color: var(--gold-light);
+}
+
 /* ── SOCIAL ICONS ── */
 .socials {
   display: flex;
@@ -1645,7 +1659,6 @@ body {
     font-size: 1.4rem;
   }
 }
-
 
 /* ── EXCERPT MODAL ── */
 .excerpt-modal {
@@ -1789,8 +1802,12 @@ body.modal-open {
 }
 
 @keyframes excerptBackdropIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes excerptDialogIn {
@@ -1812,7 +1829,6 @@ body.modal-open {
     padding: 2rem 1.5rem;
   }
 }
-
 
 /* ── 404 PAGE (standalone /404.html) ── */
 .not-found {
@@ -1853,4 +1869,34 @@ body.modal-open {
   font-size: 1.05rem;
   line-height: 1.6;
   color: var(--ink-light);
+}
+
+/* ─── Footer credit (portfolio projects only) ─── */
+.footer-credit {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding-left: 0.75rem;
+  border-left: 1px solid rgba(250, 247, 242, 0.15);
+  color: rgba(250, 247, 242, 0.4);
+}
+
+.footer-credit a {
+  color: rgba(250, 247, 242, 0.6);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-credit a:hover,
+.footer-credit a:focus-visible {
+  color: var(--gold);
+}
+
+/* Stack credit below copyright on narrow screens */
+@media (max-width: 480px) {
+  .footer-credit {
+    display: block;
+    margin: 0.5rem 0 0;
+    padding: 0;
+    border-left: none;
+  }
 }
