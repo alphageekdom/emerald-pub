@@ -116,7 +116,7 @@ function getFocusables(root) {
 
 function handleExcerptKeydown(event) {
   if (event.key === 'Escape') {
-    closeExcerpt();
+    closeExcerpt({ restoreFocus: true });
     return;
   }
   if (event.key !== 'Tab') return;
@@ -146,12 +146,12 @@ function openExcerpt() {
   document.addEventListener('keydown', handleExcerptKeydown);
 }
 
-function closeExcerpt() {
+function closeExcerpt({ restoreFocus = true } = {}) {
   if (!excerptModal || excerptModal.hidden) return;
   excerptModal.hidden = true;
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', handleExcerptKeydown);
-  lastFocusedBeforeModal?.focus();
+  if (restoreFocus) lastFocusedBeforeModal?.focus();
 }
 
 excerptOpener?.addEventListener('click', (event) => {
@@ -159,7 +159,15 @@ excerptOpener?.addEventListener('click', (event) => {
   openExcerpt();
 });
 
-excerptCloseEls?.forEach((el) => el.addEventListener('click', closeExcerpt));
+excerptCloseEls?.forEach((el) =>
+  el.addEventListener('click', () => {
+    // In-page-anchor CTAs (e.g. "Order Your Copy" → #shop) let the user
+    // travel to the destination; restoring focus to the opener would
+    // leave focus off-screen, so skip it for those.
+    const isAnchorCta = el.matches('a[href^="#"]');
+    closeExcerpt({ restoreFocus: !isAnchorCta });
+  }),
+);
 
 
 // ── DYNAMIC DATES ──
