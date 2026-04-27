@@ -176,6 +176,17 @@ main[id] {
   color: var(--ink-light);
 }
 
+/* Short landscape viewports: reduce vertical breathing room so */
+/* sections don't waste 40%+ of a 390px-tall phone on padding. */
+@media (max-height: 700px) and (orientation: landscape) {
+  .block {
+    padding: 3.5rem 0;
+  }
+  .section-head {
+    margin-bottom: 2.5rem;
+  }
+}
+
 /* ── SHARED BUTTONS ── */
 .btn-primary-custom {
   padding: 1.05rem 2rem;
