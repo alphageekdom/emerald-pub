@@ -340,9 +340,18 @@ main[id] {
   position: relative;
   display: flex;
   align-items: center;
-  min-height: 100vh;
+  min-height: 100svh;
   padding: 8rem 0 4rem;
   overflow: hidden;
+}
+
+/* Short viewports (landscape phones, short laptop windows): release */
+/* the full-viewport floor and tighten padding so the hero doesn't crowd. */
+@media (max-height: 700px) {
+  .hero {
+    min-height: auto;
+    padding: 6rem 0 3rem;
+  }
 }
 
 /* Soft gold glow in the upper-right */
