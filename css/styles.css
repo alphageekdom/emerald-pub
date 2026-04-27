@@ -9,7 +9,7 @@
   /* Ink */
   --ink: #1a1a18;
   --ink-light: #4a4a45;
-  --ink-muted: #6b6b63;
+  --ink-muted: #5f5f57;
 
   /* Brand */
   --emerald: #2d6a4f;
@@ -75,10 +75,12 @@ body {
   outline-offset: 3px;
 }
 
-/* Programmatic focus on <main> after a skip-link / nav-anchor click — */
-/* don't render an outline around the entire main region. */
+/* Programmatic focus on <main> or any anchored section after a */
+/* skip-link / nav-anchor click — don't render a region-sized outline. */
 main:focus,
-main:focus-visible {
+main:focus-visible,
+section[tabindex]:focus,
+section[tabindex]:focus-visible {
   outline: none;
 }
 
