@@ -9,7 +9,7 @@
   /* Ink */
   --ink: #1a1a18;
   --ink-light: #4a4a45;
-  --ink-muted: #8a8a82;
+  --ink-muted: #6b6b63;
 
   /* Brand */
   --emerald: #2d6a4f;
@@ -19,6 +19,7 @@
 
   /* Accents */
   --gold: #b68d40;
+  --gold-ink: #8a6929;
   --gold-light: #d4b068;
   --gold-soft: #e8d5a8;
 
@@ -373,7 +374,7 @@ body {
   color: var(--ink-muted);
 }
 .hero-meta .sep {
-  color: var(--gold);
+  color: var(--gold-ink);
 }
 
 /* ── 3D BOOK COVER ── */
@@ -822,7 +823,7 @@ body {
   margin-bottom: 1rem;
   font-size: 0.9rem;
   letter-spacing: 0.2em;
-  color: var(--gold);
+  color: var(--gold-ink);
 }
 
 /* ── QUOTE BODY ── */
@@ -1598,7 +1599,7 @@ body {
 .foot-credit {
   /* nowrap keeps the separator + "Site by AlphaGeekdom" together as a single chunk that wraps to a new line when it can't fit */
   white-space: nowrap;
-  color: rgba(245, 241, 232, 0.4);
+  color: rgba(245, 241, 232, 0.55);
 }
 
 /* Middle-dot separator travels with the credit on wrap */
