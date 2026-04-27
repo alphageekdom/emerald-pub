@@ -97,7 +97,9 @@ function formatPhoneNumber(event) {
   event.target.value = parts.join('');
 }
 
-phoneInput?.addEventListener('input', formatPhoneNumber);
+// Format on blur, not input — avoids yanking the caret to the end of the
+// field while the user is still mid-edit.
+phoneInput?.addEventListener('blur', formatPhoneNumber);
 
 
 // ── EXCERPT MODAL ──
@@ -168,6 +170,48 @@ excerptCloseEls?.forEach((el) =>
     closeExcerpt({ restoreFocus: !isAnchorCta });
   }),
 );
+
+
+// ── FORM SUBMIT BUSY STATE ──
+// Netlify either redirects on success or returns the user to this page on
+// failure. While the request is in flight the button has no feedback, so
+// users can re-click. Disable + swap text + flag aria-busy until either
+// the page navigates away or pageshow restores via bfcache.
+const submittableForms = document.querySelectorAll(
+  'form[data-netlify="true"]',
+);
+
+const busyState = new WeakMap();
+
+function markFormBusy(form) {
+  const button = form.querySelector('button[type="submit"]');
+  if (!button) return;
+  busyState.set(button, button.textContent);
+  button.disabled = true;
+  button.setAttribute('aria-busy', 'true');
+  button.textContent = 'Sending…';
+}
+
+function clearFormBusy(form) {
+  const button = form.querySelector('button[type="submit"]');
+  if (!button || !busyState.has(button)) return;
+  button.disabled = false;
+  button.removeAttribute('aria-busy');
+  button.textContent = busyState.get(button);
+  busyState.delete(button);
+}
+
+submittableForms.forEach((form) => {
+  form.addEventListener('submit', () => markFormBusy(form));
+});
+
+// Restore button text when the user navigates back via the browser back
+// button (bfcache restore) — otherwise the disabled "Sending…" state
+// would persist.
+window.addEventListener('pageshow', (event) => {
+  if (!event.persisted) return;
+  submittableForms.forEach(clearFormBusy);
+});
 
 
 // ── DYNAMIC DATES ──

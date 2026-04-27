@@ -1362,7 +1362,7 @@ main[id] {
 }
 
 .nl-field input::placeholder {
-  color: rgba(245, 241, 232, 0.3);
+  color: rgba(245, 241, 232, 0.55);
 }
 
 /* Autofill override for dark fields */
@@ -1512,7 +1512,7 @@ main[id] {
 
 .c-field input::placeholder,
 .c-field textarea::placeholder {
-  color: rgba(26, 26, 24, 0.3);
+  color: rgba(26, 26, 24, 0.55);
 }
 
 /* ── SUBMIT BUTTON ── */
