@@ -76,6 +76,15 @@
 
     <!-- Custom styles (load after Bootstrap to override) -->
     <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- Arm .reveal opacity:0 starting state pre-paint to avoid a flash of -->
+    <!-- visible content. Feature-gated: browsers without IntersectionObserver -->
+    <!-- skip the class entirely so content renders normally. -->
+    <script>
+      if ('IntersectionObserver' in window) {
+        document.documentElement.classList.add('reveal-ready');
+      }
+    </script>
   </head>
 
   <body>
