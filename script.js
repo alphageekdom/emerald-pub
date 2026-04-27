@@ -43,6 +43,10 @@ function handleAnchorClick(event) {
     behavior: reducedMotionQuery.matches ? 'auto' : 'smooth',
   });
 
+  // Move focus into the target so the skip link actually skips and so
+  // keyboard users resume tabbing from the destination, not the link.
+  target.focus({ preventScroll: true });
+
   closeMobileMenu();
 }
 
@@ -60,6 +64,10 @@ const REVEAL_THRESHOLD = 0.15;
 const scrollReveals = document.querySelectorAll('.reveal');
 
 function initRevealObserver() {
+  // Arm the .reveal opacity:0 starting state only when JS is running.
+  // Without this class the CSS leaves content visible by default.
+  document.documentElement.classList.add('reveal-ready');
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {

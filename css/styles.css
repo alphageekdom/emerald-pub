@@ -75,6 +75,13 @@ body {
   outline-offset: 3px;
 }
 
+/* Programmatic focus on <main> after a skip-link / nav-anchor click — */
+/* don't render an outline around the entire main region. */
+main:focus,
+main:focus-visible {
+  outline: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -119,15 +126,17 @@ body {
   color: var(--emerald);
 }
 
-/* ── REVEAL-ON-SCROLL (HERO KEPT VISIBLE BY DEFAULT VIA JS) ── */
-.reveal {
+/* ── REVEAL-ON-SCROLL ── */
+/* Default: content is visible — no-JS users see everything. */
+/* JS arms the animation by adding .reveal-ready to <html> before observing. */
+.reveal-ready .reveal {
   opacity: 0;
   transform: translateY(28px);
   transition:
     opacity 0.9s var(--ease),
     transform 0.9s var(--ease);
 }
-.reveal.is-in {
+.reveal-ready .reveal.is-in {
   opacity: 1;
   transform: translateY(0);
 }
