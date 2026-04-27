@@ -18,7 +18,6 @@ if (navbar) window.addEventListener('scroll', handleNavScroll);
 
 
 // ── NAV ANCHORS + MOBILE MENU ──
-const NAV_HEIGHT_OFFSET = 70;
 const navMenu = document.getElementById('navMenu');
 const anchorLinks = document.querySelectorAll('a[href^="#"]');
 const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -36,8 +35,9 @@ function handleAnchorClick(event) {
   if (!target) return;
 
   event.preventDefault();
+  const navHeight = navbar?.getBoundingClientRect().height ?? 70;
   const targetY =
-    target.getBoundingClientRect().top + window.scrollY - NAV_HEIGHT_OFFSET;
+    target.getBoundingClientRect().top + window.scrollY - navHeight - 16;
   window.scrollTo({
     top: targetY,
     behavior: reducedMotionQuery.matches ? 'auto' : 'smooth',

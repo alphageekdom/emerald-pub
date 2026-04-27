@@ -137,6 +137,12 @@ body {
   padding: clamp(5rem, 10vw, 8rem) 0;
 }
 
+/* Keep keyboard focus targets clear of the fixed navbar */
+section[id],
+main[id] {
+  scroll-margin-top: 6rem;
+}
+
 /* ── SECTION HEAD (EYEBROW + HEADLINE + LEAD) ── */
 .section-head {
   max-width: 720px;
@@ -196,6 +202,17 @@ body {
 .btn-ghost:hover {
   color: var(--emerald);
   text-decoration-color: var(--emerald);
+}
+
+/* Decorative trailing arrow kept out of the accessible name */
+.btn-ghost--arrow::after {
+  content: ' →';
+  display: inline-block;
+  margin-left: 0.3em;
+  transition: transform 0.3s var(--ease);
+}
+.btn-ghost--arrow:hover::after {
+  transform: translateX(3px);
 }
 
 /* ── NAVBAR ── */
@@ -1799,6 +1816,17 @@ body {
   color: var(--cream) !important;
   background: var(--emerald);
   transform: translateY(-2px);
+}
+
+/* Decorative trailing arrow kept out of the accessible name */
+.excerpt-modal__cta--arrow::after {
+  content: ' →';
+  display: inline-block;
+  margin-left: 0.3em;
+  transition: transform 0.3s var(--ease);
+}
+.excerpt-modal__cta--arrow:hover::after {
+  transform: translateX(3px);
 }
 
 body.modal-open {
