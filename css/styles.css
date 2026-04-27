@@ -978,7 +978,7 @@ main[id] {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height: 540px;
+  min-height: 540px;
   border-radius: 4px;
   overflow: hidden;
   box-shadow: 0 20px 40px -20px rgba(15, 42, 30, 0.25);
@@ -1121,13 +1121,21 @@ main[id] {
 /* ── MOBILE (≤ 767.98PX) ── */
 @media (max-width: 767.98px) {
   .edition-card {
-    height: 480px;
+    min-height: 480px;
   }
   .edition-title {
     font-size: 1.6rem;
   }
   .edition-price {
     font-size: 1.7rem;
+  }
+}
+
+/* Short landscape viewports: reduce card floor so the three cards */
+/* don't dominate a 390px-tall phone in landscape. */
+@media (max-height: 700px) and (orientation: landscape) {
+  .edition-card {
+    min-height: 420px;
   }
 }
 
