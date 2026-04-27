@@ -1716,7 +1716,9 @@ main[id] {
 .excerpt-modal {
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  /* Above Bootstrap's .fixed-top navbar (z-index: 1030) so the dialog */
+  /* top — including the close button — isn't covered by the navbar. */
+  z-index: 1100;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1742,7 +1744,7 @@ main[id] {
   z-index: 1;
   width: 100%;
   max-width: 640px;
-  max-height: 85vh;
+  max-height: 90svh;
   overflow-y: auto;
   padding: clamp(2.2rem, 5vw, 3.5rem);
   border-radius: 4px;
@@ -1890,6 +1892,25 @@ body.modal-open {
   }
   .excerpt-modal__dialog {
     padding: 2rem 1.5rem;
+  }
+}
+
+/* Short viewports (landscape phones especially): give the dialog */
+/* nearly the full viewport and tighten internal spacing so the */
+/* three-paragraph excerpt isn't crammed inside an already-short window. */
+@media (max-height: 600px) {
+  .excerpt-modal {
+    padding: 0.75rem 0.5rem;
+  }
+  .excerpt-modal__dialog {
+    max-height: 95svh;
+    padding: 1.5rem 1.5rem 1.25rem;
+  }
+  .excerpt-modal__title {
+    margin-bottom: 1rem;
+  }
+  .excerpt-modal__body p:last-child {
+    margin-bottom: 1.25rem;
   }
 }
 
