@@ -679,6 +679,7 @@ main[id] {
 }
 
 .author-body p {
+  max-width: 62ch;
   margin-bottom: 1.3rem;
   font-size: 1.05rem;
   color: var(--ink-light);
