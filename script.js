@@ -21,6 +21,7 @@ if (navbar) window.addEventListener('scroll', handleNavScroll);
 const NAV_HEIGHT_OFFSET = 70;
 const navMenu = document.getElementById('navMenu');
 const anchorLinks = document.querySelectorAll('a[href^="#"]');
+const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 function closeMobileMenu() {
   if (!navMenu.classList.contains('show')) return;
@@ -37,7 +38,10 @@ function handleAnchorClick(event) {
   event.preventDefault();
   const targetY =
     target.getBoundingClientRect().top + window.scrollY - NAV_HEIGHT_OFFSET;
-  window.scrollTo({ top: targetY, behavior: 'smooth' });
+  window.scrollTo({
+    top: targetY,
+    behavior: reducedMotionQuery.matches ? 'auto' : 'smooth',
+  });
 
   closeMobileMenu();
 }
