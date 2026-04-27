@@ -47,6 +47,9 @@ function handleAnchorClick(event) {
   // keyboard users resume tabbing from the destination, not the link.
   target.focus({ preventScroll: true });
 
+  // Mirror the URL hash so back-button navigation and link sharing work.
+  history.pushState(null, '', href);
+
   closeMobileMenu();
 }
 
