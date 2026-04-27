@@ -12,24 +12,25 @@ A single-page marketing site for **_Rising from the Ashes_** by E. Wise, an upco
 
 | Desktop — Hero | Desktop — Shop |
 | :---: | :---: |
-| ![Hero section with CSS book cover](docs/screenshots/desktop-hero.jpeg) | ![Three-edition shop grid](docs/screenshots/desktop-shop.jpeg) |
+| ![Hero section with CSS book cover](screenshots/desktop-hero.jpeg) | ![Three-edition shop grid](screenshots/desktop-shop.jpeg) |
 
 | Mobile — Hero | Mobile — Nav Open |
 | :---: | :---: |
-| ![Mobile hero, menu closed](docs/screenshots/mobile-hero.jpeg) | ![Mobile navigation expanded](docs/screenshots/mobile-nav-open.jpeg) |
+| ![Mobile hero, menu closed](screenshots/mobile-hero.jpeg) | ![Mobile navigation expanded](screenshots/mobile-nav-open.jpeg) |
 
 ---
 
 ## Sections
 
-- **Hero** — Title, tagline, CSS-rendered book cover, and floating ember particles.
+- **Hero** — Title, tagline, CSS-rendered book cover, and floating ember particles. A "Read an Excerpt" button opens a focus-trapped modal with three paragraphs from Chapter I.
 - **About the Author** — Portrait and bio for E. Wise.
 - **Inside the Book** — All eight chapters with short descriptions.
 - **Praise** — Three reader reviews with avatars and 5-star ratings.
-- **Shop** — Three editions (E-Book $14, Hardcover $29, Autographed $48).
+- **Shop** — Three editions (E-Book $14, Hardcover $29, Autographed $48), plus a row of retailer links.
+- **FAQ** — Five common questions covering shipping, formats, the autographed run, bulk orders, and the audiobook.
 - **Newsletter** — Email signup that promises the first chapter free (Netlify Forms).
 - **Contact** — Editorial / press inquiries with a full contact form (Netlify Forms).
-- **Footer** — Brand column, link columns, and social icons (Instagram, X, Goodreads, Substack).
+- **Footer** — Brand column, link columns, social icons (Instagram, X, Goodreads, Substack), and a small portfolio disclaimer below the copyright line.
 
 ---
 
@@ -49,10 +50,11 @@ A single-page marketing site for **_Rising from the Ashes_** by E. Wise, an upco
 
 - Sticky navbar that changes state on scroll
 - Smooth-scroll anchor navigation with mobile menu auto-close
-- Branded preloader that fades on page load
-- Hero entrance animation, plus `IntersectionObserver`-driven reveals for the rest of the page
-- Auto-formatted phone input — `(XXX) XXX-XXXX` as you type
-- Floating ember particles in the hero
+- `IntersectionObserver`-driven reveal animations, armed pre-paint to prevent a flash of visible content
+- Excerpt modal with focus trap, ESC and backdrop dismissal, and focus restoration to the opener
+- Responsive layout including a dedicated landscape / short-viewport pass for the hero, sections, modal, and shop cards (`svh` units, orientation-aware media queries)
+- Auto-formatted phone input — `(XXX) XXX-XXXX` formatting applied on blur
+- Floating ember particles in the hero (suppressed under `prefers-reduced-motion`)
 - Pure-CSS book cover (no image asset needed)
 - Explicit `width`/`height` on images plus a responsive `srcset` on the hero portrait to minimize CLS
 - Open Graph and Twitter Card meta tags for link previews
@@ -81,9 +83,8 @@ emerald-pub/
 │   ├── styles.css      # Custom styles (loaded after Bootstrap)
 │   └── vendor/
 │       └── bootstrap.min.css   # Bootstrap 5.3.3, self-hosted
-├── script.js           # Nav, smooth scroll, preloader, reveals, phone format
-├── docs/
-│   └── screenshots/    # Desktop + mobile captures referenced in this README
+├── script.js           # Nav, smooth scroll, reveals, phone format, excerpt modal
+├── screenshots/        # Desktop + mobile captures referenced in this README
 └── README.md
 ```
 
