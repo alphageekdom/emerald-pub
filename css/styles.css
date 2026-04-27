@@ -1683,6 +1683,18 @@ main[id] {
   border-bottom-color: var(--gold-light);
 }
 
+/* Portfolio disclaimer — quiet fine print under the copyright line. */
+/* Color matches the surrounding meta text (0.55 alpha → ~5.6:1 contrast */
+/* on the #14120f footer, passing WCAG AA for small text); visual */
+/* subordination comes from size + italic, not contrast loss. */
+.foot-disclaimer {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.72rem;
+  font-style: italic;
+  color: rgba(245, 241, 232, 0.55);
+}
+
 /* ── SOCIAL ICONS ── */
 .socials {
   display: flex;
