@@ -89,7 +89,7 @@ initRevealObserver();
 
 
 // ── CONTACT PHONE FORMATTING ──
-const phoneInput = document.getElementById('c-phone');
+const phoneInput = document.getElementById('contact-phone');
 
 function formatPhoneNumber(event) {
   const digits = event.target.value.replace(/\D/g, '').slice(0, 10);

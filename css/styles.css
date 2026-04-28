@@ -1361,13 +1361,13 @@ main[id] {
 }
 
 /* ── FORM FIELDS ── */
-.nl-field {
+.newsletter-field {
   display: flex;
   flex-direction: column;
   margin-bottom: 1.2rem;
 }
 
-.nl-field label {
+.newsletter-field label {
   margin-bottom: 0.5rem;
   font-size: 0.7rem;
   font-weight: 500;
@@ -1376,7 +1376,7 @@ main[id] {
   color: var(--gold-soft);
 }
 
-.nl-field input {
+.newsletter-field input {
   padding: 0.7rem 0;
   border: none;
   border-bottom: 1px solid rgba(245, 241, 232, 0.2);
@@ -1387,17 +1387,17 @@ main[id] {
   transition: border-color 0.3s;
 }
 
-.nl-field input:focus {
+.newsletter-field input:focus {
   border-color: var(--gold-light);
   outline: none;
 }
 
-.nl-field input::placeholder {
+.newsletter-field input::placeholder {
   color: rgba(245, 241, 232, 0.55);
 }
 
 /* Autofill override for dark fields */
-.nl-field input:-webkit-autofill {
+.newsletter-field input:-webkit-autofill {
   -webkit-text-fill-color: var(--cream);
   -webkit-box-shadow: 0 0 0 1000px transparent inset;
   transition: background-color 9999s ease-in-out 0s;
@@ -1503,12 +1503,12 @@ main[id] {
 }
 
 /* ── FIELDS ── */
-.c-field {
+.contact-field {
   display: flex;
   flex-direction: column;
 }
 
-.c-field label {
+.contact-field label {
   margin-bottom: 0.5rem;
   font-size: 0.7rem;
   font-weight: 500;
@@ -1517,8 +1517,8 @@ main[id] {
   color: var(--ink-muted);
 }
 
-.c-field input,
-.c-field textarea {
+.contact-field input,
+.contact-field textarea {
   padding: 0.7rem 0;
   border: none;
   border-bottom: 1px solid rgba(26, 26, 24, 0.15);
@@ -1530,19 +1530,19 @@ main[id] {
   transition: border-color 0.3s;
 }
 
-.c-field textarea {
+.contact-field textarea {
   min-height: 120px;
   resize: vertical;
 }
 
-.c-field input:focus,
-.c-field textarea:focus {
+.contact-field input:focus,
+.contact-field textarea:focus {
   border-color: var(--emerald);
   outline: none;
 }
 
-.c-field input::placeholder,
-.c-field textarea::placeholder {
+.contact-field input::placeholder,
+.contact-field textarea::placeholder {
   color: rgba(26, 26, 24, 0.55);
 }
 
