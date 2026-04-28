@@ -18,6 +18,14 @@ if (navbar) window.addEventListener('scroll', handleNavScroll);
 
 
 // ── NAV ANCHORS + MOBILE MENU ──
+// Fallback used when navbar.getBoundingClientRect() returns 0 (rare —
+// e.g. nav element missing from the DOM). Matches the navbar's typical
+// rendered height so smooth-scroll math doesn't undershoot.
+const NAV_HEIGHT_FALLBACK_PX = 70;
+// Extra breathing room above the target section after offsetting for the
+// fixed navbar — keeps the section heading from kissing the navbar edge.
+const SCROLL_OFFSET_PX = 16;
+
 const navMenu = document.getElementById('navMenu');
 const anchorLinks = document.querySelectorAll('a[href^="#"]');
 const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -35,9 +43,9 @@ function handleAnchorClick(event) {
   if (!target) return;
 
   event.preventDefault();
-  const navHeight = navbar?.getBoundingClientRect().height ?? 70;
+  const navHeight = navbar?.getBoundingClientRect().height ?? NAV_HEIGHT_FALLBACK_PX;
   const targetY =
-    target.getBoundingClientRect().top + window.scrollY - navHeight - 16;
+    target.getBoundingClientRect().top + window.scrollY - navHeight - SCROLL_OFFSET_PX;
   window.scrollTo({
     top: targetY,
     behavior: reducedMotionQuery.matches ? 'auto' : 'smooth',
@@ -64,7 +72,7 @@ document.addEventListener('keydown', (event) => {
 // ── SCROLL-TRIGGERED REVEALS ──
 // Hero .reveal elements start in the viewport and animate in on first tick.
 const REVEAL_THRESHOLD = 0.15;
-const scrollReveals = document.querySelectorAll('.reveal');
+const revealElements = document.querySelectorAll('.reveal');
 
 function initRevealObserver() {
   // Arm the .reveal opacity:0 starting state only when JS is running.
@@ -82,7 +90,7 @@ function initRevealObserver() {
     { threshold: REVEAL_THRESHOLD }
   );
 
-  scrollReveals.forEach((el) => observer.observe(el));
+  revealElements.forEach((el) => observer.observe(el));
 }
 
 initRevealObserver();
@@ -180,16 +188,16 @@ excerptCloseEls?.forEach((el) =>
 // failure. While the request is in flight the button has no feedback, so
 // users can re-click. Disable + swap text + flag aria-busy until either
 // the page navigates away or pageshow restores via bfcache.
-const submittableForms = document.querySelectorAll(
+const netlifyForms = document.querySelectorAll(
   'form[data-netlify="true"]',
 );
 
-const busyState = new WeakMap();
+const originalButtonText = new WeakMap();
 
 function markFormBusy(form) {
   const button = form.querySelector('button[type="submit"]');
   if (!button) return;
-  busyState.set(button, button.textContent);
+  originalButtonText.set(button, button.textContent);
   button.disabled = true;
   button.setAttribute('aria-busy', 'true');
   button.textContent = 'Sending…';
@@ -197,14 +205,14 @@ function markFormBusy(form) {
 
 function clearFormBusy(form) {
   const button = form.querySelector('button[type="submit"]');
-  if (!button || !busyState.has(button)) return;
+  if (!button || !originalButtonText.has(button)) return;
   button.disabled = false;
   button.removeAttribute('aria-busy');
-  button.textContent = busyState.get(button);
-  busyState.delete(button);
+  button.textContent = originalButtonText.get(button);
+  originalButtonText.delete(button);
 }
 
-submittableForms.forEach((form) => {
+netlifyForms.forEach((form) => {
   form.addEventListener('submit', () => markFormBusy(form));
 });
 
@@ -213,7 +221,7 @@ submittableForms.forEach((form) => {
 // would persist.
 window.addEventListener('pageshow', (event) => {
   if (!event.persisted) return;
-  submittableForms.forEach(clearFormBusy);
+  netlifyForms.forEach(clearFormBusy);
 });
 
 
@@ -225,7 +233,7 @@ const now = new Date();
 const currentYear = now.getFullYear();
 const currentMonth = now.getMonth();
 
-function currentSeasonLabel() {
+function getCurrentSeasonLabel() {
   // December rolls into next year's Winter
   if (currentMonth === 11) return `Winter ${currentYear + 1}`;
   if (currentMonth <= 1) return `Winter ${currentYear}`;
@@ -235,4 +243,4 @@ function currentSeasonLabel() {
 }
 
 if (yearEl) yearEl.textContent = currentYear;
-if (seasonEl) seasonEl.textContent = currentSeasonLabel();
+if (seasonEl) seasonEl.textContent = getCurrentSeasonLabel();
