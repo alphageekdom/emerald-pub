@@ -188,7 +188,7 @@ main[id] {
 }
 
 /* ── SHARED BUTTONS ── */
-.btn-primary-custom {
+.btn-emerald {
   padding: 1.05rem 2rem;
   border-radius: var(--radius-pill);
   font-size: 0.88rem;
@@ -199,7 +199,7 @@ main[id] {
   background: var(--emerald-dark);
   transition: all 0.4s var(--ease);
 }
-.btn-primary-custom:hover {
+.btn-emerald:hover {
   color: var(--cream);
   background: var(--emerald);
   transform: translateY(-2px);
@@ -531,7 +531,7 @@ main[id] {
   background: var(--gold);
 }
 
-.book-sub {
+.book-subtitle {
   font-size: 0.72rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
