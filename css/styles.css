@@ -1589,7 +1589,7 @@ main[id] {
 }
 
 /* ── COLUMN HEADINGS ── */
-.site-footer .foot-col-title {
+.site-footer .footer-col-title {
   margin-bottom: 1.2rem;
   font-family: var(--font-display);
   font-size: 1.1rem;
@@ -1619,7 +1619,7 @@ main[id] {
 }
 
 /* ── BRAND COLUMN ── */
-.foot-brand {
+.footer-brand {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -1629,7 +1629,7 @@ main[id] {
   color: var(--cream);
 }
 
-.foot-brand-dot {
+.footer-brand-dot {
   display: inline-block;
   width: 10px;
   height: 10px;
@@ -1637,14 +1637,14 @@ main[id] {
   background: var(--emerald-light);
 }
 
-.foot-tag {
+.footer-tagline {
   max-width: 30ch;
   line-height: 1.6;
   color: rgba(245, 241, 232, 0.55);
 }
 
 /* ── BOTTOM BAR ── */
-.foot-bottom {
+.footer-bottom {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -1656,20 +1656,20 @@ main[id] {
   letter-spacing: 0.05em;
 }
 
-.foot-credit {
+.footer-credit {
   /* nowrap keeps the separator + "Site by AlphaGeekdom" together as a single chunk that wraps to a new line when it can't fit */
   white-space: nowrap;
   color: rgba(245, 241, 232, 0.55);
 }
 
 /* Middle-dot separator travels with the credit on wrap */
-.foot-credit::before {
+.footer-credit::before {
   content: ' · ';
   margin: 0 0.4rem 0 0.2rem;
   color: rgba(245, 241, 232, 0.3);
 }
 
-.foot-credit a {
+.footer-credit a {
   color: rgba(245, 241, 232, 0.7);
   text-decoration: none;
   border-bottom: 1px solid rgba(212, 176, 104, 0.4);
@@ -1678,7 +1678,7 @@ main[id] {
     border-color 0.3s;
 }
 
-.foot-credit a:hover {
+.footer-credit a:hover {
   color: var(--gold-light);
   border-bottom-color: var(--gold-light);
 }
@@ -1687,7 +1687,7 @@ main[id] {
 /* Color matches the surrounding meta text (0.55 alpha → ~5.6:1 contrast */
 /* on the #14120f footer, passing WCAG AA for small text); visual */
 /* subordination comes from size + italic, not contrast loss. */
-.foot-disclaimer {
+.footer-disclaimer {
   display: block;
   margin-top: 0.4rem;
   font-size: 0.72rem;
@@ -1724,11 +1724,11 @@ main[id] {
   .site-footer {
     padding: 4rem 0 2rem;
   }
-  .foot-bottom {
+  .footer-bottom {
     flex-direction: column;
     text-align: center;
   }
-  .foot-brand {
+  .footer-brand {
     font-size: 1.4rem;
   }
 }
@@ -1976,32 +1976,3 @@ body.modal-open {
   color: var(--ink-light);
 }
 
-/* ─── Footer credit (portfolio projects only) ─── */
-.footer-credit {
-  display: inline-block;
-  margin-left: 0.5rem;
-  padding-left: 0.75rem;
-  border-left: 1px solid rgba(250, 247, 242, 0.15);
-  color: rgba(250, 247, 242, 0.4);
-}
-
-.footer-credit a {
-  color: rgba(250, 247, 242, 0.6);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer-credit a:hover,
-.footer-credit a:focus-visible {
-  color: var(--gold);
-}
-
-/* Stack credit below copyright on narrow screens */
-@media (max-width: 480px) {
-  .footer-credit {
-    display: block;
-    margin: 0.5rem 0 0;
-    padding: 0;
-    border-left: none;
-  }
-}
