@@ -64,13 +64,13 @@ A single-page marketing site for **_Rising from the Ashes_** by E. Wise, an upco
 
 ## Lighthouse
 
-Desktop run against the live site (`npx lighthouse https://emerald-pub.netlify.app/ --preset=desktop`, 2026-04-23):
+Desktop run against the live site (`npx lighthouse https://emerald-pub.netlify.app/ --preset=desktop`, 2026-04-28):
 
 | Performance | Accessibility | Best Practices | SEO |
 | :---: | :---: | :---: | :---: |
-| **98** | **100** | **100** | **100** |
+| **100** | **100** | **100** | **100** |
 
-CLS = 0, TBT = 0 ms, LCP = 0.9 s. The small Performance deduction comes from ~31 KiB of unused Bootstrap CSS on the render-blocking stylesheet — a known tradeoff of loading the grid via CDN.
+LCP = 0.7 s, FCP = 0.5 s, Speed Index = 0.5 s, TBT = 0 ms, CLS = 0.003. Lighthouse still flags ~26 KiB of unused Bootstrap CSS on the render-blocking stylesheet, but the estimated savings round to 0 ms and the score lands at 100 — a known tradeoff of self-hosting Bootstrap to avoid a cross-origin CDN round-trip.
 
 ---
 
