@@ -1037,7 +1037,7 @@ main[id] {
   background: var(--gold-light);
 }
 
-.edition-tag.tag-limited {
+.edition-tag--limited {
   color: var(--cream-soft);
   background: var(--gold);
 }
@@ -1068,7 +1068,7 @@ main[id] {
   color: var(--cream-soft);
 }
 
-.edition-desc {
+.edition-description {
   max-width: 30ch;
   margin-bottom: 1.4rem;
   font-size: 0.92rem;
@@ -1077,7 +1077,7 @@ main[id] {
 }
 
 /* ── PRICE + BUTTON ROW ── */
-.edition-foot {
+.edition-meta {
   display: flex;
   align-items: center;
   justify-content: space-between;
